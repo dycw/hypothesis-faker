@@ -1,0 +1,8 @@
+[flake8]
+ignore = ANN101,ANN102,S310,S322,S403,S404,S603,S607,A003,B008,FP003,FP004,FP005,FP009,PT013,PT019,SIM106,P101,U101,N802,N803,N806,E203,W503
+max-line-length = 88
+min-python-version = 3.9
+per-file-ignores = */tests/*.py:S101
+show-source = True
+suppress-dummy-args = True
+unused-arguments-ignore-abstract-functions = True

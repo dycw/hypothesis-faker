@@ -1,0 +1,76 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 80
+skip-magic-trailing-comma = true
+target-version = ["py38"]
+
+
+[tool.isort]
+atomic = true
+force_single_line = true
+line_length = 80
+lines_after_imports = 2
+profile = "black"
+remove_redundant_aliases = true
+skip_gitignore = true
+src_paths = ["src"]
+virtual_env = ".venv/bin/python"
+
+
+[tool.poetry]
+name = "hypothesis-faker"
+version = "0.0.0"
+description = "Some faker providers ported as hypothesis strategies"
+authors = ["Derek Wan <d.wan@icloud.com>"]
+license = "MIT"
+homepage = "https://github.com/dycw/hypothesis-faker"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+black = "^21.4b0"
+flake8 = "^3.9.1"
+flake8-absolute-import = "^1.0"
+flake8-annotations = "^2.6.2"
+flake8-bandit = "^2.1.2"
+flake8-bugbear = "^21.4.3"
+flake8-builtins = "^1.5.3"
+flake8-comprehensions = "^3.4.0"
+flake8-debugger = "^4.0.0"
+flake8-eradicate = "^1.0.0"
+flake8-executable = "^2.1.1"
+flake8-fine-pytest = "^1.0.2"
+flake8-implicit-str-concat = "^0.2.0"
+flake8-mutable = "^1.2.0"
+flake8-print = "^4.0.0"
+flake8-pytest-style = "^1.4.1"
+flake8-simplify = "^0.14.0"
+flake8-string-format = "^0.3.0"
+flake8-unused-arguments = "^0.0.6"
+isort = "^5.8.0"
+mypy = "^0.812"
+pep8-naming = "^0.11.1"
+pre-commit = "^2.12.1"
+pytest = "^6.2.3"
+pytest-randomly = "^3.7.0"
+pytest-xdist = "^2.2.1"
+
+
+[tool.pytest.ini_options]
+addopts = ["-q", "-rsxX", "--color=yes", "--strict-markers"]
+minversion = 6.0
+looponfailroots = ["src"]
+testpaths = ["src/tests"]
+xfail_strict = true
+
+log_level = "WARNING"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli_format = """\
+  [%(asctime)s.%(msecs)03d] [%(levelno)d] [%(name)s:%(funcName)s] \
+  [%(process)d]\n%(msg)s"""
+log_cli_level = "WARNING"
