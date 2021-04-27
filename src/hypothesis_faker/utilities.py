@@ -1,5 +1,5 @@
 from bisect import bisect
-from collections.abc import Sequence
+from typing import Any
 from typing import Callable
 from typing import TypeVar
 from typing import Union
@@ -15,11 +15,15 @@ T = TypeVar("T")
 U = TypeVar("U")
 
 
-class WeightedList(Sequence[T]):
-    def __init__(self, *items: tuple[T, Num]) -> None:
-        if not items:
-            raise ValueError(f"{items=} cannot be empty")
-        elements, weights = zip(*items)
+class WeightedList(list[tuple[T, Num]]):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        if not self:
+            raise ValueError(f"{self} cannot be empty")
+        try:
+            elements, weights = zip(*self)
+        except TypeError:
+            raise TypeError(f"{self} could not be zipped into 2 lists")
         self._elements = cast(list[T], list(elements))
         self._weights = cast(list[Num], list(weights))
         self.total_weight, self._cum_weights = 0.0, []
@@ -29,9 +33,6 @@ class WeightedList(Sequence[T]):
             self.total_weight += weight
             self._cum_weights.append(self.total_weight)
 
-    def __len__(self) -> int:
-        return len(self._elements)
-
     def __getitem__(self, item: Num) -> T:
         if not 0.0 <= item < self.total_weight:
             raise IndexError(f"Invalid {item=}")
@@ -40,8 +41,11 @@ class WeightedList(Sequence[T]):
 
 @composite
 def weighted_samples(
-    draw: Callable[[SearchStrategy[T]], T], *items: tuple[U, Num]
+    draw: Callable[[SearchStrategy[T]], T], items: list[tuple[U, Num]]
 ) -> U:
-    wlist = WeightedList(*items)
+    if isinstance(items, WeightedList):
+        wlist = items
+    else:
+        wlist = WeightedList(items)
     i = draw(floats(0.0, wlist.total_weight, exclude_max=True))
     return wlist[i]
