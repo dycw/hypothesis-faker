@@ -31,6 +31,6 @@ def test_weighted_list_cannot_have_negative_weights() -> None:
         WeightedList(("a", -1.0))
 
 
-@given(letter=weighted_samples(("a", 3), ("b", 1), ("c", 2)))
+@given(letter=weighted_samples(("a", 3.0), ("b", 1.0), ("c", 2.0)))
 def test_weighted_samples(letter: str) -> None:
     assert letter in {"a", "b", "c"}
