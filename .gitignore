@@ -1,0 +1,5 @@
+.hypothesis/
+.pytest_cache/
+.vim/
+__pycache__/
+dist/
