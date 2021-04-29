@@ -77,10 +77,6 @@ repos:
     rev: v5.8.0
     hooks:
       - id: isort
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.7.2.1
-    hooks:
-      - id: shellcheck
   - repo: https://github.com/asottile/yesqa
     rev: v1.2.3
     hooks:
