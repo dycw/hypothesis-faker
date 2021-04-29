@@ -22,15 +22,17 @@ def test_weighted_list(i: float) -> None:
 
 
 def test_weighted_list_cannot_be_empty() -> None:
-    with raises(ValueError):
-        WeightedList()
+    with raises(ValueError, match="cannot be empty"):
+        WeightedList([])  # type: ignore
 
 
 def test_weighted_list_cannot_have_negative_weights() -> None:
-    with raises(ValueError):
-        WeightedList([("a", -1.0)])
+    with raises(ValueError, match="Invalid weight"):
+        WeightedList([("a", -1.0)])  # type: ignore
 
 
-@given(letter=weighted_samples([("a", 3.0), ("b", 1.0), ("c", 2.0)]))
+@given(
+    letter=weighted_samples(WeightedList([("a", 3.0), ("b", 1.0), ("c", 2.0)]))
+)
 def test_weighted_samples(letter: str) -> None:
     assert letter in {"a", "b", "c"}

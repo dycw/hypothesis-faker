@@ -1,23 +1,28 @@
 from bisect import bisect
-from typing import Any
-from typing import Callable
-from typing import TypeVar
-from typing import Union
+from functools import reduce
+from re import sub
+from typing import Iterable
 from typing import cast
 
 from hypothesis.strategies import SearchStrategy
-from hypothesis.strategies import composite
 from hypothesis.strategies import floats
 
+from hypothesis_faker.types import Num
+from hypothesis_faker.types import T
 
-Num = Union[int, float]
-T = TypeVar("T")
-U = TypeVar("U")
+
+def fill_format_string(format_: str, replacements: dict[str, str]) -> str:
+    return reduce(_fill_format_1, replacements.items(), format_)
+
+
+def _fill_format_1(format_: str, pair: tuple[str, str]) -> str:
+    token, replacement = pair
+    return sub(f"{{{{{token}}}}}", replacement, format_)
 
 
 class WeightedList(list[tuple[T, Num]]):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
+    def __init__(self, items: Iterable[tuple[T, Num]]) -> None:
+        super().__init__(items)
         if not self:
             raise ValueError(f"{self} cannot be empty")
         try:
@@ -33,19 +38,17 @@ class WeightedList(list[tuple[T, Num]]):
             self.total_weight += weight
             self._cum_weights.append(self.total_weight)
 
+    def __add__(self, other: "WeightedList[T]") -> "WeightedList[T]":
+        return WeightedList(super().__add__(other))
+
     def __getitem__(self, item: Num) -> T:
         if not 0.0 <= item < self.total_weight:
             raise IndexError(f"Invalid {item=}")
         return self._elements[bisect(self._cum_weights, item)]
 
 
-@composite
-def weighted_samples(
-    draw: Callable[[SearchStrategy[T]], T], items: list[tuple[U, Num]]
-) -> U:
-    if isinstance(items, WeightedList):
-        wlist = items
-    else:
-        wlist = WeightedList(items)
-    i = draw(floats(0.0, wlist.total_weight, exclude_max=True))
-    return wlist[i]
+def weighted_samples(wlist: WeightedList[T]) -> SearchStrategy[T]:
+    def inner(i: float) -> T:
+        return wlist[i]
+
+    return floats(0.0, wlist.total_weight, exclude_max=True).map(inner)
