@@ -30,5 +30,7 @@ from hypothesis_faker.providers.person import suffixes_male
         suffixes_male,
     ],
 )
-def test_names(data: DataObject, strategy: SearchStrategy[str]) -> None:
+def test_person_strategies(
+    data: DataObject, strategy: SearchStrategy[str]
+) -> None:
     assert isinstance(data.draw(strategy), str)
