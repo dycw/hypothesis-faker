@@ -1,5 +1,8 @@
+*.ipynb
 .hypothesis/
+.ipynb_checkpoints/
 .pytest_cache/
+.venv/
 .vim/
 __pycache__/
 dist/
