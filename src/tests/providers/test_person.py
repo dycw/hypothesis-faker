@@ -1,5 +1,4 @@
 from hypothesis import given
-from hypothesis import settings
 from hypothesis.strategies import DataObject
 from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies import data
@@ -16,7 +15,6 @@ from hypothesis_faker.providers.person import suffixes_male
 
 
 @given(data=data())
-@settings(max_examples=1000)
 @mark.parametrize(
     "strategy",
     [
