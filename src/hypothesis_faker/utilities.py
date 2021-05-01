@@ -2,14 +2,23 @@ import re
 from bisect import bisect
 from functools import reduce
 from re import sub
+from typing import Callable
 from typing import Iterable
 from typing import cast
 
 from hypothesis.strategies import SearchStrategy
+from hypothesis.strategies import composite
 from hypothesis.strategies import floats
+from hypothesis.strategies import integers
+from hypothesis.strategies import just
 
 from hypothesis_faker.types import Num
 from hypothesis_faker.types import T
+
+
+digits_0_9 = integers(0, 9).map(str)
+digits_1_9 = integers(1, 9).map(str)
+empty_str = just("")
 
 
 def fill_format_string(format_: str, replacements: dict[str, str]) -> str:
@@ -19,6 +28,26 @@ def fill_format_string(format_: str, replacements: dict[str, str]) -> str:
 def _fill_format_1(format_: str, pair: tuple[str, str]) -> str:
     token, replacement = pair
     return sub(f"{{{{{token}}}}}", replacement, format_)
+
+
+def numerified(format_: str) -> SearchStrategy[str]:
+    @composite
+    def inner(draw: Callable[[SearchStrategy[T]], T]) -> str:
+        chars = []
+        for char in format_:
+            if char == "#":
+                chars.append(draw(digits_0_9))
+            elif char == "%":
+                chars.append(draw(digits_1_9))
+            elif char == "!":
+                chars.append(draw(digits_0_9 | empty_str))
+            elif char == "%":
+                chars.append(draw(digits_1_9 | empty_str))
+            else:
+                chars.append(char)
+        return "".join(chars)
+
+    return inner()
 
 
 PATTERN_FOR_DOUBLE_BRACES = re.compile(r"{{(\w+)}}")
