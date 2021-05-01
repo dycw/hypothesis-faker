@@ -80,7 +80,7 @@ language_names = sampled_from(_LANGUAGE_NAMES)
 # name
 
 
-def _pad_names(format_: str) -> SearchStrategy[str]:
+def _populated_templates(format_: str) -> SearchStrategy[str]:
     tokens = PATTERN_FOR_DOUBLE_BRACES.findall(format_)
     strategies = {token: _TOKENS_TO_STRATEGIES[token] for token in tokens}
 
@@ -92,10 +92,12 @@ def _pad_names(format_: str) -> SearchStrategy[str]:
     return inner()
 
 
-names_male = weighted_samples(_FORMATS_MALE).flatmap(_pad_names)
-names_female = weighted_samples(_FORMATS_FEMALE).flatmap(_pad_names)
-names_nonbinary = weighted_samples(_FORMATS_NON_BINARY).flatmap(_pad_names)
-names = weighted_samples(_FORMATS).flatmap(_pad_names)
+names_male = weighted_samples(_FORMATS_MALE).flatmap(_populated_templates)
+names_female = weighted_samples(_FORMATS_FEMALE).flatmap(_populated_templates)
+names_nonbinary = weighted_samples(_FORMATS_NON_BINARY).flatmap(
+    _populated_templates
+)
+names = weighted_samples(_FORMATS).flatmap(_populated_templates)
 
 
 _TOKENS_TO_STRATEGIES = {
