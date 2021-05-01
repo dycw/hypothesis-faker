@@ -5,6 +5,7 @@ from faker.providers.person.en_US import Provider as PersonProviderEnUS
 from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies import composite
 from hypothesis.strategies import fixed_dictionaries
+from hypothesis.strategies import sampled_from
 
 from hypothesis_faker.types import T
 from hypothesis_faker.utilities import PATTERN_FOR_DOUBLE_BRACES
@@ -62,12 +63,18 @@ first_names_female = weighted_samples(_FIRST_NAMES_FEMALE)
 first_names_nonbinary = weighted_samples(_FIRST_NAMES_NONBINARY)
 first_names = weighted_samples(_FIRST_NAMES)
 last_names = weighted_samples(_LAST_NAMES)
+last_names_male = last_names
+last_names_female = last_names
+last_names_nonbinary = last_names
 prefixes_male = weighted_samples(_PREFIXES_MALE)
 prefixes_female = weighted_samples(_PREFIXES_FEMALE)
 prefixes_nonbinary = weighted_samples(_PREFIXES_NONBINARY)
+prefixes = prefixes_male | prefixes_female | prefixes_nonbinary
 suffixes_male = weighted_samples(_SUFFIXES_MALE)
 suffixes_female = weighted_samples(_SUFFIXES_FEMALE)
 suffixes_nonbinary = weighted_samples(_SUFFIXES_NONBINARY)
+suffixes = suffixes_male | suffixes_female | suffixes_nonbinary
+language_names = sampled_from(_LANGUAGE_NAMES)
 
 
 # name
