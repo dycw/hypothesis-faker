@@ -30,6 +30,11 @@ from hypothesis_faker.providers.person import suffixes  # noqa: F401
 from hypothesis_faker.providers.person import suffixes_female  # noqa: F401
 from hypothesis_faker.providers.person import suffixes_male  # noqa: F401
 from hypothesis_faker.providers.person import suffixes_nonbinary  # noqa: F401
+from hypothesis_faker.providers.phone_number import (  # noqa: F401
+    country_calling_codes,
+)
+from hypothesis_faker.providers.phone_number import msisdns  # noqa: F401
+from hypothesis_faker.providers.phone_number import phone_numbers  # noqa: F401
 
 
 _ = first_names_nonbinary
