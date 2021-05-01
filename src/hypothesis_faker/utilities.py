@@ -1,3 +1,4 @@
+import re
 from bisect import bisect
 from functools import reduce
 from re import sub
@@ -18,6 +19,9 @@ def fill_format_string(format_: str, replacements: dict[str, str]) -> str:
 def _fill_format_1(format_: str, pair: tuple[str, str]) -> str:
     token, replacement = pair
     return sub(f"{{{{{token}}}}}", replacement, format_)
+
+
+PATTERN_FOR_DOUBLE_BRACES = re.compile(r"{{(\w+)}}")
 
 
 class WeightedList(list[tuple[T, Num]]):
