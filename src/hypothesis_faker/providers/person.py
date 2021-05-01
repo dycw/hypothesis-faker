@@ -80,16 +80,22 @@ language_names = sampled_from(_LANGUAGE_NAMES)
 # name
 
 
-def _build_names_strategy(formats: WeightedList[str]) -> SearchStrategy[str]:
+def _pad_names(format_: str) -> SearchStrategy[str]:
+    tokens = PATTERN_FOR_DOUBLE_BRACES.findall(format_)
+    strategies = {token: _TOKENS_TO_STRATEGIES[token] for token in tokens}
+
     @composite
     def inner(draw: Callable[[SearchStrategy[T]], T]) -> str:
-        format_ = draw(weighted_samples(formats))
-        tokens = PATTERN_FOR_DOUBLE_BRACES.findall(format_)
-        strategies = {token: _TOKENS_TO_STRATEGIES[token] for token in tokens}
         replacements = draw(fixed_dictionaries(strategies))
         return fill_format_string(format_, replacements)
 
     return inner()
+
+
+names_male = weighted_samples(_FORMATS_MALE).flatmap(_pad_names)
+names_female = weighted_samples(_FORMATS_FEMALE).flatmap(_pad_names)
+names_nonbinary = weighted_samples(_FORMATS_NON_BINARY).flatmap(_pad_names)
+names = weighted_samples(_FORMATS).flatmap(_pad_names)
 
 
 _TOKENS_TO_STRATEGIES = {
@@ -104,9 +110,3 @@ _TOKENS_TO_STRATEGIES = {
     "suffix_male": suffixes_male,
     "suffix_nonbinary": suffixes_nonbinary,
 }
-
-
-names_male = _build_names_strategy(_FORMATS_MALE)
-names_female = _build_names_strategy(_FORMATS_FEMALE)
-names_nonbinary = _build_names_strategy(_FORMATS_NON_BINARY)
-names = _build_names_strategy(_FORMATS)
