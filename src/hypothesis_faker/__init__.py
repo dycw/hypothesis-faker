@@ -1,4 +1,6 @@
 from hypothesis_faker.providers.file import mime_types  # noqa: F401
+from hypothesis_faker.providers.lorem import sentences  # noqa: F401
+from hypothesis_faker.providers.lorem import words  # noqa: F401
 from hypothesis_faker.providers.person import first_names_female  # noqa: F401
 from hypothesis_faker.providers.person import first_names_male  # noqa: F401
 from hypothesis_faker.providers.person import last_names  # noqa: F401
