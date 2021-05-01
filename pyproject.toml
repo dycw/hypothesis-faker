@@ -31,8 +31,8 @@ homepage = "https://github.com/dycw/hypothesis-faker"
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-faker = "^8.1"
-hypothesis = "^6.10"
+faker = "^8.1.2"
+hypothesis = "^6.10.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.4b0"
