@@ -1,3 +1,8 @@
+from hypothesis_faker.providers.color import color_names  # noqa: F401
+from hypothesis_faker.providers.color import hex_colors  # noqa: F401
+from hypothesis_faker.providers.color import rgb_colors  # noqa: F401
+from hypothesis_faker.providers.color import rgb_css_colors  # noqa: F401
+from hypothesis_faker.providers.color import safe_hex_colors  # noqa: F401
 from hypothesis_faker.providers.file import mime_types  # noqa: F401
 from hypothesis_faker.providers.lorem import paragraphs  # noqa: F401
 from hypothesis_faker.providers.lorem import sentences  # noqa: F401
