@@ -2,9 +2,9 @@ from itertools import chain
 from typing import Iterable
 from typing import Optional
 from typing import Union
-from typing import cast
 
 from faker.providers.file import Provider as FileProvider
+from hypothesis.errors import InvalidArgument
 from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies import just
 from hypothesis.strategies import one_of
@@ -47,15 +47,25 @@ def _strategy_from_category(
     mapping: dict[str, SearchStrategy[T]],
     category: Optional[Union[str, Iterable[str]]],
 ) -> SearchStrategy[T]:
+    if mapping:
+        valid = ", ".join(map(repr, mapping))
+    else:
+        raise InvalidArgument(f"{mapping=} cannot be empty")
     if category is None:
         return one_of(*mapping.values())
+    elif isinstance(category, str):
+        categories = {category}
     else:
-        try:
-            categories = set(cast(Iterable[str], category))
-        except TypeError:
-            return mapping[cast(str, category)]
-        else:
-            return one_of(*(v for k, v in mapping.items() if k in categories))
+        categories = set(category)
+    invalid = [c for c in categories if c not in mapping]
+    if invalid:
+        invalid = ", ".join(map(repr, invalid))
+        raise InvalidArgument(
+            f"Invalid category/ies: {invalid}; "  # noqa: S608
+            f"please select from {valid}"
+        )
+    else:
+        return one_of(*(v for k, v in mapping.items() if k in categories))
 
 
 def file_names(
