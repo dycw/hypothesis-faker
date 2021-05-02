@@ -2,6 +2,7 @@ import re
 from bisect import bisect
 from functools import reduce
 from re import sub
+from string import ascii_lowercase
 from typing import Callable
 from typing import Iterable
 from typing import cast
@@ -11,11 +12,13 @@ from hypothesis.strategies import composite
 from hypothesis.strategies import floats
 from hypothesis.strategies import integers
 from hypothesis.strategies import just
+from hypothesis.strategies import sampled_from
 
 from hypothesis_faker.types import Num
 from hypothesis_faker.types import T
 
 
+ascii_lowercase_letters = sampled_from(ascii_lowercase)
 digits_0_9 = integers(0, 9).map(str)
 digits_1_9 = integers(1, 9).map(str)
 empty_str = just("")
