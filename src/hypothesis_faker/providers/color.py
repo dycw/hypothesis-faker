@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from math import ceil
 from math import floor
 from typing import Callable

@@ -1,7 +1,7 @@
+from __future__ import annotations
+
 from itertools import chain
 from typing import Iterable
-from typing import Optional
-from typing import Union
 
 from faker.providers.file import Provider as FileProvider
 from hypothesis.errors import InvalidArgument
@@ -38,14 +38,13 @@ _FILE_EXTENSIONS = {
 
 
 def mime_types(
-    category: Optional[Union[str, Iterable[str]]] = None
+    category: str | Iterable[str] | None = None,
 ) -> SearchStrategy[str]:
     return _strategy_from_category(_MIME_TYPES, category)
 
 
 def _strategy_from_category(
-    mapping: dict[str, SearchStrategy[T]],
-    category: Optional[Union[str, Iterable[str]]],
+    mapping: dict[str, SearchStrategy[T]], category: str | Iterable[str] | None
 ) -> SearchStrategy[T]:
     if mapping:
         valid = ", ".join(map(repr, mapping))
@@ -69,8 +68,7 @@ def _strategy_from_category(
 
 
 def file_names(
-    category: Optional[Union[str, Iterable[str]]] = None,
-    extension: Optional[str] = None,
+    category: str | Iterable[str] | None = None, extension: str | None = None
 ) -> SearchStrategy[str]:
     if extension is None:
         extensions = file_extensions(category=category)
@@ -85,14 +83,13 @@ def _file_names_map(pair: tuple) -> str:
 
 
 def file_extensions(
-    category: Optional[Union[str, Iterable[str]]] = None
+    category: str | Iterable[str] | None = None,
 ) -> SearchStrategy[str]:
     return _strategy_from_category(_FILE_EXTENSIONS, category)
 
 
 def file_paths(
-    category: Optional[Union[str, Iterable[str]]] = None,
-    extension: Optional[str] = None,
+    category: str | Iterable[str] | None = None, extension: str | None = None
 ) -> SearchStrategy[str]:
     return tuples(
         lists(words), file_names(category=category, extension=extension)
@@ -104,7 +101,7 @@ def _file_paths_map(pair: tuple) -> str:
     return "/".join(chain([""], words, [filename]))
 
 
-def unix_devices(prefix: Optional[str] = None) -> SearchStrategy[str]:
+def unix_devices(prefix: str | None = None) -> SearchStrategy[str]:
     if prefix is None:
         prefixes = sampled_from(list(FileProvider.unix_device_prefixes))
     else:
@@ -117,7 +114,7 @@ def _unix_devices_map(pair: tuple) -> str:
     return "/dev/{prefix}{suffix}"
 
 
-def unix_partitions(prefix: Optional[str] = None) -> SearchStrategy[str]:
+def unix_partitions(prefix: str | None = None) -> SearchStrategy[str]:
     return tuples(unix_devices(prefix=prefix), digits_0_9).map(
         _unix_partitions_map
     )

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from hypothesis import HealthCheck
 from hypothesis import given
 from hypothesis import settings
