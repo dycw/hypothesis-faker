@@ -74,7 +74,7 @@ suffixes_male = weighted_samples(_SUFFIXES_MALE)
 suffixes_female = weighted_samples(_SUFFIXES_FEMALE)
 suffixes_nonbinary = weighted_samples(_SUFFIXES_NONBINARY)
 suffixes = suffixes_male | suffixes_female | suffixes_nonbinary
-language_names = sampled_from(_LANGUAGE_NAMES)
+language_names = sampled_from(PersonProvider.language_names)
 
 
 # name
