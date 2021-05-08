@@ -40,6 +40,19 @@ def date_times_ad(
     )
 
 
+def _date_times_between(
+    tzinfo: tzinfo | None = None,
+    end_datetime: dt.datetime | None = None,
+    *,
+    min_value: dt.datetime,
+) -> SearchStrategy[dt.datetime]:
+    return datetimes(
+        min_value=min_value,
+        max_value=dt.datetime.now() if end_datetime is None else end_datetime,
+        timezones=just(tzinfo),
+    )
+
+
 def iso8601s(
     tzinfo: tzinfo | None = None, end_datetime: dt.datetime | None = None
 ) -> SearchStrategy[str]:
@@ -62,31 +75,9 @@ def date_objects(
     return date_times(end_datetime=end_datetime).map(lambda dt: dt.date())
 
 
-def times(
-    pattern: str = "%H:%M:%S", end_datetime: dt.datetime | None = None
-) -> SearchStrategy[str]:
-    return date_times(end_datetime=end_datetime).map(
-        lambda dt: dt.time().strftime(pattern)
-    )
+def times(pattern: str = "%H:%M:%S") -> SearchStrategy[str]:
+    return date_times().map(lambda dt: dt.time().strftime(pattern))
 
 
-def time_objects(
-    end_datetime: dt.datetime | None = None,
-) -> SearchStrategy[dt.time]:
-    return date_times(end_datetime=end_datetime).map(lambda dt: dt.time())
-
-
+time_objects = date_times().map(lambda dt: dt.time())
 am_pms = sampled_from(["AM", "PM"])
-
-
-def _date_times_between(
-    tzinfo: tzinfo | None = None,
-    end_datetime: dt.datetime | None = None,
-    *,
-    min_value: dt.datetime,
-) -> SearchStrategy[dt.datetime]:
-    return datetimes(
-        min_value=min_value,
-        max_value=dt.datetime.now() if end_datetime is None else end_datetime,
-        timezones=just(tzinfo),
-    )
