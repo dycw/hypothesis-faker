@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from faker.providers.phone_number import Provider as PhoneNumberProvider
 from faker.providers.phone_number.en_US import (
     Provider as PhoneNumberProviderEnUS,

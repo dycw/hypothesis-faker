@@ -1,7 +1,7 @@
+from __future__ import annotations
+
 from typing import Callable
 from typing import Iterable
-from typing import Optional
-from typing import Union
 
 from hypothesis import given
 from hypothesis.strategies import DataObject
@@ -32,7 +32,7 @@ _file_extension_categories = sampled_from(list(_FILE_EXTENSIONS))
     category=none() | _mime_type_categories | iterables(_mime_type_categories),
 )
 def test_mime_types(
-    data: DataObject, category: Optional[Union[str, Iterable[str]]]
+    data: DataObject, category: str | Iterable[str] | None
 ) -> None:
     assert isinstance(data.draw(mime_types(category=category)), str)
 
@@ -48,8 +48,8 @@ def test_mime_types(
 def test_file_names_and_file_paths(
     strategy: Callable[..., SearchStrategy[str]],
     data: DataObject,
-    category: Optional[Union[str, Iterable[str]]],
-    extension: Optional[str],
+    category: str | Iterable[str] | None,
+    extension: str | None,
 ) -> None:
     assert isinstance(
         data.draw(strategy(category=category, extension=extension)), str
@@ -63,7 +63,7 @@ def test_file_names_and_file_paths(
     | iterables(_file_extension_categories),
 )
 def test_file_extensions(
-    data: DataObject, category: Optional[Union[str, Iterable[str]]]
+    data: DataObject, category: str | Iterable[str] | None
 ) -> None:
     assert isinstance(data.draw(file_extensions(category=category)), str)
 
@@ -75,7 +75,7 @@ def test_file_extensions(
     | iterables(_file_extension_categories),
 )
 def test_file_paths(
-    data: DataObject, category: Optional[Union[str, Iterable[str]]]
+    data: DataObject, category: str | Iterable[str] | None
 ) -> None:
     assert isinstance(data.draw(file_extensions(category=category)), str)
 
@@ -85,6 +85,6 @@ def test_file_paths(
 def test_unix_devices_and_partitions(
     strategy: Callable[..., SearchStrategy[str]],
     data: DataObject,
-    prefix: Optional[str],
+    prefix: str | None,
 ) -> None:
     assert isinstance(data.draw(strategy(prefix=prefix)), str)

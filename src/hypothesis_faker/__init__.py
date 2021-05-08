@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from hypothesis_faker.providers.color import color_names
 from hypothesis_faker.providers.color import colors
 from hypothesis_faker.providers.color import hex_colors

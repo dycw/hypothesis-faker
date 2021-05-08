@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 from bisect import bisect
 from functools import reduce
@@ -74,7 +76,7 @@ class WeightedList(list[tuple[T, Num]]):
             self.total_weight += weight
             self._cum_weights.append(self.total_weight)
 
-    def __add__(self, other: "WeightedList[T]") -> "WeightedList[T]":
+    def __add__(self, other: WeightedList[T]) -> WeightedList[T]:
         return WeightedList(super().__add__(other))
 
     def __getitem__(self, item: Num) -> T:

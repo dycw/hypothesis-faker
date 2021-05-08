@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Callable
 
 from faker.providers.person import Provider as PersonProvider
