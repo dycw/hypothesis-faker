@@ -306,6 +306,17 @@ python-versions = ">=3.6"
 flake8 = "*"
 
 [[package]]
+name = "flake8-future-import"
+version = "0.4.6"
+description = "__future__ import checker, plugin for flake8"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flake8 = "*"
+
+[[package]]
 name = "flake8-implicit-str-concat"
 version = "0.2.0"
 description = "Flake8 plugin to encourage correct string literal concatenation."
@@ -855,7 +866,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "3545ea351aa95510dcce788ba6c745091ee2ce9c2f4e6f9bbd7193b9c29da726"
+content-hash = "9b2bce989126d9d53f61bed6a93bf15030b81e568ea66fcd11a1160d45633bd2"
 
 [metadata.files]
 apipkg = [
@@ -962,6 +973,10 @@ flake8-executable = [
 ]
 flake8-fine-pytest = [
     {file = "flake8_fine_pytest-1.0.2.tar.gz", hash = "sha256:a22b27e0b536f5f5c706bf70f0f8cbb0856aeb9ef3d410e5ed428988c619b249"},
+]
+flake8-future-import = [
+    {file = "flake8-future-import-0.4.6.tar.gz", hash = "sha256:9711df0394a2bb5af47986a816cafc2e7f20db9ebc729676553e13df6cabbcf8"},
+    {file = "flake8_future_import-0.4.6-py2.py3-none-any.whl", hash = "sha256:dceb036a81744b59a9ca34811b8a9f952a3585c95eaebdda15e8b04dafc77595"},
 ]
 flake8-implicit-str-concat = [
     {file = "flake8_implicit_str_concat-0.2.0-py2.py3-none-any.whl", hash = "sha256:ea856c22cd8dbd4ecb8d091e92784ce09a3083f1763df895693bf887d21acef5"},
