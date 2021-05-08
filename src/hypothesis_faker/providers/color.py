@@ -13,6 +13,7 @@ from hypothesis.errors import InvalidArgument
 from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies import composite
 from hypothesis.strategies import integers
+from hypothesis.strategies import just
 from hypothesis.strategies import lists
 from hypothesis.strategies import sampled_from
 
@@ -27,41 +28,23 @@ color_names = sampled_from(list(_ALL_COLORS))
 safe_color_names = sampled_from(_SAFE_COLORS)
 
 
-@composite
-def _hex_colors(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    n = draw(integers(1, 16777215))
-    return f"#{n:06x}"
+hex_colors = integers(1, 16777215).map(lambda n: f"#{n:06x}")
 
 
-hex_colors = _hex_colors()
-
-
-@composite
-def _safe_hex_colors(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    ints = draw(lists(integers(0, 15), min_size=3, max_size=3))
+def _safe_hex_colors(ints: list[int]) -> str:
     parts = (f"{17*i:02x}" for i in ints)
     return "#{}".format("".join(parts))
 
 
-safe_hex_colors = _safe_hex_colors()
-
-
-@composite
-def _rgb_colors(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    ints = draw(lists(integers(0, 255), min_size=3, max_size=3))
-    return ",".join(str(i) for i in ints)
-
-
-rgb_colors = _rgb_colors()
-
-
-@composite
-def _rgb_css_colors(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    ints = draw(lists(integers(0, 255), min_size=3, max_size=3))
-    return "rgb({})".format(",".join(str(i) for i in ints))
-
-
-rgb_css_colors = _rgb_css_colors()
+safe_hex_colors = lists(integers(0, 15), min_size=3, max_size=3).map(
+    _safe_hex_colors
+)
+rgb_colors = lists(integers(0, 255), min_size=3, max_size=3).map(
+    lambda ints: ",".join(map(str, ints))
+)
+rgb_css_colors = lists(integers(0, 255), min_size=3, max_size=3).map(
+    lambda ints: "rgb({})".format(",".join(map(str, ints)))
+)
 
 
 # colors
@@ -121,53 +104,42 @@ def colors(
 
 
 def _hues(hue: _HUE) -> SearchStrategy[int]:
-    @composite
-    def inner(draw: Callable[[SearchStrategy[T]], T]) -> int:
-        min_value, max_value = _RANDOM_COLOR.get_hue_range(hue)
-        drawn = draw(integers(min_value, max_value))
-        if drawn < 0:
-            drawn += 360
-        return drawn
+    min_value, max_value = _RANDOM_COLOR.get_hue_range(hue)
 
-    return inner()
+    def f(n: int) -> int:
+        return n if n >= 0 else (n + 360)
+
+    return integers(min_value, max_value).map(f)
 
 
 def _saturations(
     hue: int, hue_name: _HUE, luminosity: _LUMINOSITY
 ) -> SearchStrategy[int]:
-    @composite
-    def inner(draw: Callable[[SearchStrategy[T]], T]) -> int:
-        if luminosity == "random":
-            return draw(integers(0, 100))
-        elif hue_name == "monochrome":
-            return 0
-        else:
-            s_min, s_max = _RANDOM_COLOR.get_saturation_range(hue)
-            if luminosity == "bright":
-                s_min = 55
-            elif luminosity == "dark":
-                s_min = s_max - 10
-            elif luminosity == "light":
-                s_max = 55
-            return draw(integers(s_min, s_max))
-
-    return inner()
+    if luminosity == "random":
+        return integers(0, 100)
+    elif hue_name == "monochrome":
+        return just(0)
+    else:
+        s_min, s_max = _RANDOM_COLOR.get_saturation_range(hue)
+        if luminosity == "bright":
+            s_min = 55
+        elif luminosity == "dark":
+            s_min = s_max - 10
+        elif luminosity == "light":
+            s_max = 55
+        return integers(s_min, s_max)
 
 
 def _brightnesses(
     h: int, s: int, luminosity: _LUMINOSITY
 ) -> SearchStrategy[int]:
-    @composite
-    def inner(draw: Callable[[SearchStrategy[T]], T]) -> int:
-        b_min = _RANDOM_COLOR.get_minimum_brightness(h, s)
+    b_min = _RANDOM_COLOR.get_minimum_brightness(h, s)
+    b_max = 100
+    if luminosity == "dark":
+        b_max = b_min + 20
+    elif luminosity == "light":
+        b_min = (b_max + b_min) / 2
+    elif luminosity == "random":
+        b_min = 0
         b_max = 100
-        if luminosity == "dark":
-            b_max = b_min + 20
-        elif luminosity == "light":
-            b_min = (b_max + b_min) / 2
-        elif luminosity == "random":
-            b_min = 0
-            b_max = 100
-        return draw(integers(ceil(b_min), floor(b_max)))
-
-    return inner()
+    return integers(ceil(b_min), floor(b_max))
