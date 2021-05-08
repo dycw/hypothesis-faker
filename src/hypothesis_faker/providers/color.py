@@ -20,24 +20,11 @@ from hypothesis.strategies import sampled_from
 from hypothesis_faker.types import T
 
 
-_ALL_COLORS = ColorProvider.all_colors
-_SAFE_COLORS = ColorProvider.safe_colors
-
-
-color_names = sampled_from(list(_ALL_COLORS))
-safe_color_names = sampled_from(_SAFE_COLORS)
-
-
+color_names = sampled_from(list(ColorProvider.all_colors))
+safe_color_names = sampled_from(ColorProvider.safe_colors)
 hex_colors = integers(1, 16777215).map(lambda n: f"#{n:06x}")
-
-
-def _safe_hex_colors(ints: list[int]) -> str:
-    parts = (f"{17*i:02x}" for i in ints)
-    return "#{}".format("".join(parts))
-
-
 safe_hex_colors = lists(integers(0, 15), min_size=3, max_size=3).map(
-    _safe_hex_colors
+    lambda ints: "#{}".format("".join(f"{17*i:02x}" for i in ints))
 )
 rgb_colors = lists(integers(0, 255), min_size=3, max_size=3).map(
     lambda ints: ",".join(map(str, ints))

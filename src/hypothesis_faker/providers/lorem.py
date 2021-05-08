@@ -12,34 +12,16 @@ from hypothesis.strategies import sampled_from
 from hypothesis_faker.types import T
 
 
-_WORD_LIST = LoremProviderEnUS.word_list
 _WORD_CONNECTOR = LoremProvider.word_connector
-_SENTENCE_PUNCTUATION = LoremProvider.sentence_punctuation
 
 
-words = sampled_from(_WORD_LIST)
-
-
-@composite
-def _sentences(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    if drawn := draw(lists(words)):
-        return _join_words_into_sentence(drawn)
-    else:
-        return ""
-
-
-sentences = _sentences()
-
-
-@composite
-def _paragraphs(draw: Callable[[SearchStrategy[T]], T]) -> str:
-    if drawn := draw(lists(sentences)):
-        return _WORD_CONNECTOR.join(drawn)
-    else:
-        return ""
-
-
-paragraphs = _paragraphs()
+words = sampled_from(LoremProviderEnUS.word_list)
+sentences = lists(words).map(
+    lambda x: _join_words_into_sentence(x) if x else ""
+)
+paragraphs = lists(sentences).map(
+    lambda x: _WORD_CONNECTOR.join(x) if x else ""
+)
 
 
 def texts(max_length: int = 200) -> SearchStrategy[str]:
@@ -71,5 +53,5 @@ def _join_words_into_sentence(words: list[str]) -> str:
     first, *rest = words
     return (
         _WORD_CONNECTOR.join(chain([first.title()], rest))
-        + _SENTENCE_PUNCTUATION
+        + LoremProvider.sentence_punctuation
     )
