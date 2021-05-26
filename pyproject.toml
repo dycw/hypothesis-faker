@@ -64,6 +64,20 @@ pytest-xdist = "^2.2.1"
 pytz = "^2021.1"
 
 
+[tool.pyright]
+include = ["."]
+exclude = [
+  ".venv",
+  "bin/dropbox.py",
+  "home/.ipython/profile_default",
+  "home/.jupyter",
+  "submodules",
+]
+venvPath = ".venv"
+typeCheckingMode = "strict"
+executionEnvironments = [{ root = "src" }]
+
+
 [tool.pytest.ini_options]
 addopts = ["-q", "-rsxX", "--color=yes", "--strict-markers"]
 minversion = 6.0
