@@ -64,6 +64,12 @@ pytest-xdist = "^2.2.1"
 pytz = "^2021.1"
 
 
+[tool.pyright]
+include = ["."]
+venvPath = ".venv"
+executionEnvironments = [{ root = "src" }]
+
+
 [tool.pytest.ini_options]
 addopts = ["-q", "-rsxX", "--color=yes", "--strict-markers"]
 minversion = 6.0
