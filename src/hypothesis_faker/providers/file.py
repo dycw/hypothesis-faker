@@ -7,10 +7,10 @@ from faker.providers.file import Provider as FileProvider
 from hypothesis.errors import InvalidArgument
 from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies import just
+from hypothesis.strategies import lists
 from hypothesis.strategies import one_of
 from hypothesis.strategies import sampled_from
 from hypothesis.strategies import tuples
-from hypothesis.strategies._internal.core import lists
 
 from hypothesis_faker.providers.lorem import words
 from hypothesis_faker.types import T
@@ -60,8 +60,7 @@ def _strategy_from_category(
     if invalid:
         invalid = ", ".join(map(repr, invalid))
         raise InvalidArgument(
-            f"Invalid category/ies: {invalid}; "  # noqa: S608
-            f"please select from {valid}"
+            f"Invalid category/ies: {invalid}; please select from {valid}"
         )
     else:
         return one_of(*(v for k, v in mapping.items() if k in categories))
