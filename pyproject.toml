@@ -2,12 +2,10 @@
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-
 [tool.black]
 line-length = 80
 skip-magic-trailing-comma = true
 target-version = ["py38"]
-
 
 [tool.isort]
 atomic = true
@@ -19,7 +17,6 @@ remove_redundant_aliases = true
 skip_gitignore = true
 src_paths = ["src"]
 virtual_env = ".venv/bin/python"
-
 
 [tool.poetry]
 name = "hypothesis-faker"
@@ -59,12 +56,10 @@ pytest-randomly = "^3.8.0"
 pytest-xdist = "^2.3.0"
 pytz = "^2021.1"
 
-
 [tool.pyright]
 include = ["."]
 venvPath = ".venv"
 executionEnvironments = [{ root = "src" }]
-
 
 [tool.pytest.ini_options]
 addopts = ["-q", "-rsxX", "--color=yes", "--strict-markers"]
@@ -72,7 +67,6 @@ minversion = 6.0
 looponfailroots = ["src"]
 testpaths = ["src/tests"]
 xfail_strict = true
-
 log_level = "WARNING"
 log_cli_date_format = "%Y-%m-%d %H:%M:%S"
 log_cli_format = """\
