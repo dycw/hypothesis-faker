@@ -1,6 +1,0 @@
-[flake8]
-ignore = ANN101,ANN102,A003,B008,FI10,FI11,FI12,FI13,FI14,FI15,FI16,FI17,FI58,PT013,PT019,SIM106,P101,E203,W503
-max-line-length = 88
-min-python-version = 3.9
-per-file-ignores = */tests/*.py:S101
-show-source = True

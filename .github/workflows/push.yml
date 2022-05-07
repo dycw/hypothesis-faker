@@ -10,23 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: anothrNick/github-tag-action@1.34.0
+      - uses: butlerlogic/action-autotag@stable
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: patch
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
   publish:
     runs-on: ubuntu-latest
     needs: tag
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: snok/install-poetry@v1.1.2
-      - name: publish
-        run: |
-          git pull --ff-only --tags
-          poetry version $(git describe --tags --abbrev=0)
-          poetry build
-          poetry publish --username __token__ --password ${{ secrets.PYPI_TOKEN }}
+      - uses: actions/checkout@v3
+      - run: pipx install poetry
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.7"
+          cache: "poetry"
+      - run: poetry build
+      - run: poetry publish --username __token__ --password ${{ secrets.PYPI_TOKEN }}

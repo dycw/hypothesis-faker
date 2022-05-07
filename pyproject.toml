@@ -1,75 +1,112 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
+#### black ####################################################################
 [tool.black]
 line-length = 80
 skip-magic-trailing-comma = true
-target-version = ["py38"]
+target-version = ["py37"]
 
+#### coverage #################################################################
+[tool.coverage]
+
+[tool.coverage.run]
+branch = true
+data_file = ".coverage/data"
+source = ["app"]
+
+[tool.coverage.report]
+fail_under = 100.0
+skip_covered = true
+skip_empty = true
+
+[tool.coverage.html]
+directory = ".coverage/html"
+
+#### isort ####################################################################
 [tool.isort]
 atomic = true
+case_sensitive = true
+float_to_top = true
 force_single_line = true
 line_length = 80
 lines_after_imports = 2
 profile = "black"
 remove_redundant_aliases = true
 skip_gitignore = true
-src_paths = ["src"]
-virtual_env = ".venv/bin/python"
+
+#### poetry ###################################################################
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hypothesis-faker"
-version = "0.0.0"
-description = "Some faker providers ported as hypothesis strategies"
+version = "0.1.0"
+description = "faker providers wrapped as hypothesis strategies"
 authors = ["Derek Wan <d.wan@icloud.com>"]
 license = "MIT"
 homepage = "https://github.com/dycw/hypothesis-faker"
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.7"
 faker = "^8.8.1"
 hypothesis = "^6.14.0"
 
 [tool.poetry.dev-dependencies]
-black = "^21.6b0"
-flake8 = "^3.9.2"
-flake8-absolute-import = "^1.0"
-flake8-annotations = "^2.6.2"
-flake8-bugbear = "^21.4.3"
-flake8-builtins = "^1.5.3"
-flake8-comprehensions = "^3.5.0"
-flake8-debugger = "^4.0.0"
-flake8-eradicate = "^1.0.0"
-flake8-executable = "^2.1.1"
-flake8-future-import = "^0.4.6"
-flake8-implicit-str-concat = "^0.2.0"
-flake8-mutable = "^1.2.0"
-flake8-print = "^4.0.0"
-flake8-pytest-style = "^1.4.4"
-flake8-simplify = "^0.14.0"
-flake8-string-format = "^0.3.0"
-isort = "^5.8.0"
-pre-commit = "^2.13.0"
-pytest = "^6.2.4"
-pytest-randomly = "^3.8.0"
-pytest-xdist = "^2.3.0"
-pytz = "^2021.1"
+black = "^22.3.0"
+bump2version = "^1.0.1"
+coverage = { extras = ["toml"], version = "^6.3.2" }
+flake8 = "^4.0.1"
+flake8-absolute-import = "^1.0.0.1"
+flake8-annotations = "^2.9.0"
+flake8-bandit = "^3.0.0"
+flake8-bugbear = "^22.4.25"
+flake8-comprehensions = "^3.8.0"
+flake8-debugger = "^4.1.2"
+flake8-eradicate = "^1.2.1"
+flake8-no-pep420 = "^2.2.0"
+flake8-pie = "^0.15.0"
+flake8-print = "^5.0.0"
+flake8-simplify = "^0.19.2"
+flake8-unused-arguments = "^0.0.10"
+isort = "^5.10.1"
+nox = "^2022.1.7"
+poetry-deps-scanner = "^1.0.1"
+pre-commit = "^2.18.1"
+pyclean = "^2.2.0"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+pytest-instafail = "^0.4.2"
+pytest-xdist = "^2.5.0"
 
+#### pyright ##################################################################
 [tool.pyright]
-include = ["."]
-venvPath = ".venv"
+include = ["src"]
+pythonVersion = "3.7"
 executionEnvironments = [{ root = "src" }]
+typeCheckingMode = "strict"
+reportMissingTypeArgument = false
+reportMissingTypeStubs = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportUntypedBaseClass = false
+reportImplicitStringConcatenation = "error"
+reportMissingSuperCall = "error"
+reportPropertyTypeMismatch = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportUnusedCallResult = "error"
 
+#### pytest ###################################################################
 [tool.pytest.ini_options]
-addopts = ["-q", "-rsxX", "--color=yes", "--strict-markers"]
-minversion = 6.0
+addopts = [
+  "-rsxX",
+  "--color=auto",
+  "--cov=hypothesis_faker",
+  "--cov-report=html",
+  "--strict-markers"
+]
+filterwarnings = ["error", "ignore::DeprecationWarning"]
 looponfailroots = ["src"]
+minversion = "7.0"
 testpaths = ["src/tests"]
 xfail_strict = true
-log_level = "WARNING"
-log_cli_date_format = "%Y-%m-%d %H:%M:%S"
-log_cli_format = """\
-  [%(asctime)s.%(msecs)03d] [%(levelno)d] [%(name)s:%(funcName)s] \
-  [%(process)d]\n%(msg)s"""
-log_cli_level = "WARNING"
