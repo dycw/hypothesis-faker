@@ -40,6 +40,7 @@ importlib-metadata==4.2.0; python_version == "3.7" and python_full_version >= "3
 iniconfig==1.1.1; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 isort==5.10.1; python_full_version >= "3.6.1" and python_version < "4.0"
 mccabe==0.6.1; python_version >= "3.7" and python_version < "4.0" and python_full_version >= "3.6.1"
+more-itertools==8.13.0; python_version >= "3.5"
 mypy-extensions==0.4.3; python_full_version >= "3.6.2"
 nodeenv==1.6.0; python_version >= "3.7"
 nox==2022.1.7; python_version >= "3.6"
@@ -70,6 +71,7 @@ six==1.16.0; python_version >= "3.7" and python_full_version < "3.0.0" or python
 smmap==5.0.0; python_version >= "3.7"
 sortedcontainers==2.4.0; python_version >= "3.7"
 stevedore==3.5.0; python_version >= "3.7"
+strenum==0.4.7
 toml==0.10.2; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.7"
 tomli==2.0.1; python_version < "3.11" and python_full_version >= "3.6.2" and python_version >= "3.7" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7")
 typed-ast==1.5.3; python_version < "3.8" and implementation_name == "cpython" and python_full_version >= "3.6.2" and python_version >= "3.7"
@@ -77,4 +79,5 @@ typing-extensions==4.2.0; python_version < "3.8" and python_version >= "3.7" and
 urllib3==1.26.9; python_full_version >= "3.7.0" and python_version < "4" and python_version >= "3.7"
 virtualenv==20.14.1; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 writer-cm==1.1.1; python_version >= "3.7" and python_version < "4.0"
+xdg==5.1.1; python_version >= "3.6" and python_version < "4.0"
 zipp==3.8.0; python_version < "3.8" and python_version >= "3.7" and python_full_version >= "3.6.2"
