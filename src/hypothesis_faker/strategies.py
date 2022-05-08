@@ -18,6 +18,46 @@ def building_numbers() -> SearchStrategy[str]:
     return Provider.building_number.get_strategy()
 
 
+def cities() -> SearchStrategy[str]:
+    return Provider.city.get_strategy()
+
+
+def city_suffixes() -> SearchStrategy[str]:
+    return Provider.city_suffix.get_strategy()
+
+
+def countries() -> SearchStrategy[str]:
+    return Provider.country.get_strategy()
+
+
+def country_codes() -> SearchStrategy[str]:
+    return Provider.country_code.get_strategy()
+
+
+def current_countries() -> SearchStrategy[str]:
+    return Provider.current_country.get_strategy()
+
+
+def current_country_codes() -> SearchStrategy[str]:
+    return Provider.current_country_code.get_strategy()
+
+
+def postcodes() -> SearchStrategy[str]:
+    return Provider.postcode.get_strategy()
+
+
+def street_addresses() -> SearchStrategy[str]:
+    return Provider.street_address.get_strategy()
+
+
+def street_names() -> SearchStrategy[str]:
+    return Provider.street_name.get_strategy()
+
+
+def street_suffixes() -> SearchStrategy[str]:
+    return Provider.street_suffix.get_strategy()
+
+
 # geo #########################################################################
 
 

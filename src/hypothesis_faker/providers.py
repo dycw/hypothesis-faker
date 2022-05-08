@@ -47,6 +47,16 @@ class Provider(Enum):
     # address
     address = auto()
     building_number = auto()
+    city = auto()
+    city_suffix = auto()
+    country = auto()
+    country_code = auto()
+    current_country = auto()
+    current_country_code = auto()
+    postcode = auto()
+    street_address = auto()
+    street_name = auto()
+    street_suffix = auto()
 
     # geo
     coordinate = auto()
