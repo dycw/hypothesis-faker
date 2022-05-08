@@ -18,6 +18,7 @@ from hypothesis_faker import countries
 from hypothesis_faker import country_codes
 from hypothesis_faker import current_countries
 from hypothesis_faker import current_country_codes
+from hypothesis_faker import license_plates
 from hypothesis_faker import postcodes
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
@@ -42,6 +43,8 @@ from tests.utilities import env
         param(street_addresses, str),
         param(street_names, str),
         param(street_suffixes, str),
+        # automotive ##########################################################
+        param(license_plates, str),
         # geo #################################################################
         param(coordinates, Decimal),
     ],

@@ -44,7 +44,7 @@ def get_args_hash(*args: Any, **kwargs: Any) -> str:
 
 
 class Provider(Enum):
-    # address
+    # address #################################################################
     address = auto()
     building_number = auto()
     city = auto()
@@ -58,7 +58,10 @@ class Provider(Enum):
     street_name = auto()
     street_suffix = auto()
 
-    # geo
+    # automotive ##############################################################
+    license_plate = auto()
+
+    # geo #####################################################################
     coordinate = auto()
 
     # properties/methods ######################################################

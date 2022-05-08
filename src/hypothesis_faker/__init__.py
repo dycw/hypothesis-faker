@@ -7,6 +7,7 @@ from hypothesis_faker.strategies import countries
 from hypothesis_faker.strategies import country_codes
 from hypothesis_faker.strategies import current_countries
 from hypothesis_faker.strategies import current_country_codes
+from hypothesis_faker.strategies import license_plates
 from hypothesis_faker.strategies import postcodes
 from hypothesis_faker.strategies import street_addresses
 from hypothesis_faker.strategies import street_names
@@ -28,7 +29,9 @@ __all__ = [
     "street_addresses",
     "street_names",
     "street_suffixes",
+    # automotive ##############################################################
+    "license_plates",
     # geo #####################################################################
     "coordinates",
 ]
-__version__ = "0.1.1"
+__version__ = "0.1.2"

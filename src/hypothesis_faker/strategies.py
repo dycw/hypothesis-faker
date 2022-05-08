@@ -58,6 +58,13 @@ def street_suffixes() -> SearchStrategy[str]:
     return Provider.street_suffix.get_strategy()
 
 
+# automotive ##################################################################
+
+
+def license_plates() -> SearchStrategy[str]:
+    return Provider.license_plate.get_strategy()
+
+
 # geo #########################################################################
 
 
