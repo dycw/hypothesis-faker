@@ -11,25 +11,60 @@ from pytest import param
 
 from hypothesis_faker import abas
 from hypothesis_faker import addresses
+from hypothesis_faker import ascii_company_emails
+from hypothesis_faker import ascii_emails
+from hypothesis_faker import ascii_free_emails
+from hypothesis_faker import ascii_safe_emails
 from hypothesis_faker import bank_countries
 from hypothesis_faker import bbans
 from hypothesis_faker import building_numbers
 from hypothesis_faker import cities
 from hypothesis_faker import city_suffixes
+from hypothesis_faker import company_emails
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
 from hypothesis_faker import country_codes
 from hypothesis_faker import current_countries
 from hypothesis_faker import current_country_codes
+from hypothesis_faker import dgas
+from hypothesis_faker import domain_names
+from hypothesis_faker import domain_words
+from hypothesis_faker import emails
+from hypothesis_faker import free_email_domains
+from hypothesis_faker import free_emails
+from hypothesis_faker import hostnames
+from hypothesis_faker import http_methods
+from hypothesis_faker import iana_ids
 from hypothesis_faker import ibans
+from hypothesis_faker import image_urls
+from hypothesis_faker import ipv4_network_classes
+from hypothesis_faker import ipv4_privates
+from hypothesis_faker import ipv4_publics
+from hypothesis_faker import ipv4s
+from hypothesis_faker import ipv6s
 from hypothesis_faker import license_plates
+from hypothesis_faker import mac_addresses
+from hypothesis_faker import nic_handle_lists
+from hypothesis_faker import nic_handles
+from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
+from hypothesis_faker import ripe_ids
+from hypothesis_faker import safe_domain_names
+from hypothesis_faker import safe_emails
+from hypothesis_faker import slugs
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
 from hypothesis_faker import street_suffixes
 from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
+from hypothesis_faker import tlds
+from hypothesis_faker import uri_extensions
+from hypothesis_faker import uri_pages
+from hypothesis_faker import uri_paths
+from hypothesis_faker import uris
+from hypothesis_faker import urls
+from hypothesis_faker import user_names
 from tests.utilities import env
 
 
@@ -62,6 +97,46 @@ from tests.utilities import env
         param(swift8s, str),
         # geo #################################################################
         param(coordinates, Decimal),
+        # internet ############################################################
+        param(ascii_company_emails, str),
+        param(ascii_emails, str),
+        param(ascii_free_emails, str),
+        param(ascii_safe_emails, str),
+        param(company_emails, str),
+        param(dgas, str),
+        param(domain_names, str),
+        param(domain_words, str),
+        param(emails, str),
+        param(free_emails, str),
+        param(free_email_domains, str),
+        param(hostnames, str),
+        param(http_methods, str),
+        param(iana_ids, str),
+        param(image_urls, str),
+        param(ipv4s, str),
+        param(ipv4_network_classes, str),
+        param(ipv4_privates, str),
+        param(ipv4_publics, str),
+        param(ipv6s, str),
+        param(mac_addresses, str),
+        param(nic_handles, str),
+        param(
+            nic_handle_lists,
+            list,
+            marks=mark.xfail(reason="List hashing not sorted yet"),
+        ),
+        param(port_numbers, int),
+        param(ripe_ids, str),
+        param(safe_domain_names, str),
+        param(safe_emails, str),
+        param(slugs, str),
+        param(tlds, str),
+        param(uris, str),
+        param(uri_extensions, str),
+        param(uri_pages, str),
+        param(uri_paths, str),
+        param(urls, str),
+        param(user_names, str),
     ],
 )
 def test_strategies(

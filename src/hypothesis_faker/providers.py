@@ -73,6 +73,43 @@ class Provider(Enum):
     # geo #####################################################################
     coordinate = auto()
 
+    # internet ################################################################
+    ascii_company_email = auto()
+    ascii_email = auto()
+    ascii_free_email = auto()
+    ascii_safe_email = auto()
+    company_email = auto()
+    dga = auto()
+    domain_name = auto()
+    domain_word = auto()
+    email = auto()
+    free_email = auto()
+    free_email_domain = auto()
+    hostname = auto()
+    http_method = auto()
+    iana_id = auto()
+    image_url = auto()
+    ipv4 = auto()
+    ipv4_network_class = auto()
+    ipv4_private = auto()
+    ipv4_public = auto()
+    ipv6 = auto()
+    mac_address = auto()
+    nic_handle = auto()
+    nic_handles = auto()
+    port_number = auto()
+    ripe_id = auto()
+    safe_domain_name = auto()
+    safe_email = auto()
+    slug = auto()
+    tld = auto()
+    uri = auto()
+    uri_extension = auto()
+    uri_page = auto()
+    uri_path = auto()
+    url = auto()
+    user_name = auto()
+
     # properties/methods ######################################################
 
     @cached_property
