@@ -65,6 +65,48 @@ def license_plates() -> SearchStrategy[str]:
     return Provider.license_plate.get_strategy()
 
 
+# bank ########################################################################
+
+
+def abas() -> SearchStrategy[str]:
+    return Provider.aba.get_strategy()
+
+
+def bank_countries() -> SearchStrategy[str]:
+    return Provider.bank_country.get_strategy()
+
+
+def bbans() -> SearchStrategy[str]:
+    return Provider.bban.get_strategy()
+
+
+def ibans() -> SearchStrategy[str]:
+    return Provider.iban.get_strategy()
+
+
+def swifts(
+    *,
+    length: Optional[int] = None,
+    primary: bool = False,
+    use_dataset: bool = False,
+) -> SearchStrategy[str]:
+    return Provider.swift.get_strategy(
+        length=length, primary=primary, use_dataset=use_dataset
+    )
+
+
+def swift11s(
+    *, primary: bool = False, use_dataset: bool = False
+) -> SearchStrategy[str]:
+    return Provider.swift11.get_strategy(
+        primary=primary, use_dataset=use_dataset
+    )
+
+
+def swift8s(*, use_dataset: bool = False) -> SearchStrategy[str]:
+    return Provider.swift8.get_strategy(use_dataset=use_dataset)
+
+
 # geo #########################################################################
 
 

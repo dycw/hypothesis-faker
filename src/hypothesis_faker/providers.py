@@ -61,6 +61,15 @@ class Provider(Enum):
     # automotive ##############################################################
     license_plate = auto()
 
+    # bank ####################################################################
+    aba = auto()
+    bank_country = auto()
+    bban = auto()
+    iban = auto()
+    swift = auto()
+    swift11 = auto()
+    swift8 = auto()
+
     # geo #####################################################################
     coordinate = auto()
 
