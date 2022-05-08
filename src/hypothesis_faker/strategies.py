@@ -17,7 +17,7 @@ def addresses() -> SearchStrategy[str]:
 # geo #########################################################################
 
 
-def coordinate(
+def coordinates(
     *, center: Optional[float] = None, radius: Union[float, int] = 0.001
 ) -> SearchStrategy[Decimal]:
     return Provider.address.get_strategy(center=center, radius=radius)

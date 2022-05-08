@@ -1,7 +1,5 @@
-import datetime as dt
 import json
 from contextlib import suppress
-from dataclasses import dataclass
 from enum import Enum
 from enum import auto
 from gzip import GzipFile
@@ -10,6 +8,7 @@ from pathlib import Path
 from pickle import dump  # noqa: S403
 from pickle import load  # noqa: S403
 from random import shuffle
+from time import time
 from timeit import default_timer
 from typing import Any
 from typing import Dict
@@ -23,30 +22,26 @@ from hypothesis.strategies import SearchStrategy
 from hypothesis.strategies._internal.core import sampled_from
 from more_itertools import unique_everseen
 from writer_cm import writer_cm
-from xdg import xdg_cache_home
 
-from hypothesis_faker.settings import GENERATION_FREQ
-from hypothesis_faker.settings import GENERATION_TIME
-from hypothesis_faker.settings import MAX_ITEMS
+from hypothesis_faker.settings import get_duration
+from hypothesis_faker.settings import get_max_items
+from hypothesis_faker.settings import get_root
+from hypothesis_faker.settings import get_update_freq
 
 
-_FREQ = dt.timedelta(seconds=GENERATION_FREQ)
-_ROOT = xdg_cache_home().joinpath("hypothesis-faker")
+_ARG_HASHES: Dict[Tuple[Tuple[Any, ...], Tuple[Tuple[str, Any], ...]], str] = {}
 _FAKER = Faker()
 _ITEMS: Dict["Provider", List[Any]] = {}
 
 
-@dataclass
-class Arguments:
-    """A set of arguments to be taken together."""
-
-    args: Tuple[Any, ...]
-    kwargs: Dict[str, Any]
-
-    @cached_property
-    def hash(self) -> str:
-        text = json.dumps((self.args, self.kwargs), sort_keys=True)
-        return md5(text.encode()).hexdigest()  # noqa: S324
+def get_args_hash(*args: Any, **kwargs: Any) -> str:
+    key = (args, tuple(sorted(kwargs.items())))
+    try:
+        return _ARG_HASHES[key]
+    except KeyError:
+        text = json.dumps((args, kwargs), sort_keys=True)
+        value = _ARG_HASHES[key] = md5(text.encode()).hexdigest()  # noqa: S324
+        return value
 
 
 class Provider(Enum):
@@ -61,54 +56,60 @@ class Provider(Enum):
 
     @cached_property
     def path(self) -> Path:
-        return _ROOT.joinpath(self.name)
+        return get_root().joinpath(self.name)
 
-    def get_path(self, args: Arguments) -> Path:
-        return self.path.joinpath(args.hash)
+    def get_path(self, *args: Any, **kwargs: Any) -> Path:
+        return self.path.joinpath(get_args_hash(*args, **kwargs))
 
-    def get_update_time(self, path: Path) -> Optional[dt.datetime]:
+    def get_update_time(self, *args: Any, **kwargs: Any) -> Optional[float]:
+        path = self.get_path(*args, **kwargs)
         try:
-            return dt.datetime.fromtimestamp(path.stat().st_mtime)
-        except FileNotFoundError:
+            return path.stat().st_mtime
+        except (FileNotFoundError, NotADirectoryError):
             return None
 
-    def needs_update(self, path: Path) -> bool:
-        ut = self.get_update_time(path)
-        return (ut is None) or ((dt.datetime.now() - ut) >= _FREQ)
+    def needs_update(self, *args: Any, **kwargs: Any) -> bool:
+        ut = self.get_update_time(*args, **kwargs)
+        return (ut is None) or ((time() - ut) >= get_update_freq())
 
-    def update(self, path: Path) -> List[Any]:
+    def generate_items(self, *args: Any, **kwargs: Any) -> List[Any]:
         items = []
-        with suppress(FileNotFoundError):
-            items.extend(self.load_items(path))
-        t, method = default_timer(), getattr(_FAKER, self.name)
-        while default_timer() - t <= GENERATION_TIME:
-            items.append(method())
+        with suppress(FileNotFoundError, NotADirectoryError):
+            items.extend(self.load_items(*args, **kwargs))
+        t, dur, method = (
+            default_timer(),
+            get_duration(),
+            getattr(_FAKER, self.name),
+        )
+        while default_timer() - t <= dur:
+            items.append(method(*args, **kwargs))
         items = list(unique_everseen(items))
-        if len(items) > MAX_ITEMS:
+        max_items = get_max_items()
+        if len(items) > max_items:
             shuffle(items)
-            items = items[:MAX_ITEMS]
+            items = items[:max_items]
+        path = self.get_path(*args, **kwargs)
         with writer_cm(path, overwrite=True) as temp, GzipFile(
             temp, mode="wb"
         ) as fh:
             dump(items, fh)
         return items
 
-    def load_items(self, path: Path) -> List[Any]:
+    def load_items(self, *args: Any, **kwargs: Any) -> List[Any]:
+        path = self.get_path(*args, **kwargs)
         with GzipFile(path, mode="rb") as fh:
             return load(fh)  # noqa: S301
 
-    def get_items(self, path: Path) -> List[Any]:
-        if self.needs_update(path):
-            items = _ITEMS[self] = self.update(path)
+    def get_items(self, *args: Any, **kwargs: Any) -> List[Any]:
+        if self.needs_update(*args, **kwargs):
+            items = _ITEMS[self] = self.generate_items(*args, **kwargs)
         else:
             try:
                 items = _ITEMS[self]
             except KeyError:
-                items = _ITEMS[self] = self.load_items(path)
+                items = _ITEMS[self] = self.load_items(*args, **kwargs)
         return items
 
     def get_strategy(self, *args: Any, **kwargs: Any) -> SearchStrategy[Any]:
-        arguments = Arguments(args, kwargs)
-        path = self.get_path(arguments)
-        items = self.get_items(path)
+        items = self.get_items(*args, **kwargs)
         return sampled_from(items)

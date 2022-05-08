@@ -80,6 +80,7 @@ pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 pytest-instafail = "^0.4.2"
 pytest-xdist = "^2.5.0"
+tempenv = "^2.0.0"
 
 #### pyright ##################################################################
 [tool.pyright]

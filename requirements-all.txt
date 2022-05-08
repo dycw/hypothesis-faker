@@ -72,6 +72,7 @@ smmap==5.0.0; python_version >= "3.7"
 sortedcontainers==2.4.0; python_version >= "3.7"
 stevedore==3.5.0; python_version >= "3.7"
 strenum==0.4.7
+tempenv==2.0.0; python_version >= "3.7"
 toml==0.10.2; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.7"
 tomli==2.0.1; python_version < "3.11" and python_full_version >= "3.6.2" and python_version >= "3.7" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7")
 typed-ast==1.5.3; python_version < "3.8" and implementation_name == "cpython" and python_full_version >= "3.6.2" and python_version >= "3.7"
