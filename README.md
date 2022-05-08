@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/hypothesis-faker.svg)](https://badge.fury.io/py/hypothesis-faker)
+
 # hypothesis-faker
 
 [`faker`](https://github.com/joke2k/faker/) providers exported as
