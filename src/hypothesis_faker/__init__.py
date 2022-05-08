@@ -147,4 +147,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.3"
+__version__ = "0.1.5"
