@@ -14,6 +14,10 @@ def addresses() -> SearchStrategy[str]:
     return Provider.address.get_strategy()
 
 
+def building_numbers() -> SearchStrategy[str]:
+    return Provider.building_number.get_strategy()
+
+
 # geo #########################################################################
 
 

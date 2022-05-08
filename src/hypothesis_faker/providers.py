@@ -46,9 +46,9 @@ def get_args_hash(*args: Any, **kwargs: Any) -> str:
 class Provider(Enum):
     # address
     address = auto()
+    building_number = auto()
 
     # geo
-
     coordinate = auto()
 
     # properties/methods ######################################################
