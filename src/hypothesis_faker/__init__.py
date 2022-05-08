@@ -1,5 +1,6 @@
 from hypothesis_faker.strategies import abas
 from hypothesis_faker.strategies import addresses
+from hypothesis_faker.strategies import android_platform_tokens
 from hypothesis_faker.strategies import ascii_company_emails
 from hypothesis_faker.strategies import ascii_emails
 from hypothesis_faker.strategies import ascii_free_emails
@@ -7,6 +8,7 @@ from hypothesis_faker.strategies import ascii_safe_emails
 from hypothesis_faker.strategies import bank_countries
 from hypothesis_faker.strategies import bbans
 from hypothesis_faker.strategies import building_numbers
+from hypothesis_faker.strategies import chromes
 from hypothesis_faker.strategies import cities
 from hypothesis_faker.strategies import city_suffixes
 from hypothesis_faker.strategies import company_emails
@@ -19,6 +21,7 @@ from hypothesis_faker.strategies import dgas
 from hypothesis_faker.strategies import domain_names
 from hypothesis_faker.strategies import domain_words
 from hypothesis_faker.strategies import emails
+from hypothesis_faker.strategies import firefoxes
 from hypothesis_faker.strategies import free_email_domains
 from hypothesis_faker.strategies import free_emails
 from hypothesis_faker.strategies import hostnames
@@ -26,18 +29,26 @@ from hypothesis_faker.strategies import http_methods
 from hypothesis_faker.strategies import iana_ids
 from hypothesis_faker.strategies import ibans
 from hypothesis_faker.strategies import image_urls
+from hypothesis_faker.strategies import internet_explorers
+from hypothesis_faker.strategies import ios_platform_tokens
 from hypothesis_faker.strategies import ipv4_network_classes
 from hypothesis_faker.strategies import ipv4_privates
 from hypothesis_faker.strategies import ipv4_publics
 from hypothesis_faker.strategies import ipv4s
 from hypothesis_faker.strategies import ipv6s
 from hypothesis_faker.strategies import license_plates
+from hypothesis_faker.strategies import linux_platform_tokens
+from hypothesis_faker.strategies import linux_processors
 from hypothesis_faker.strategies import mac_addresses
+from hypothesis_faker.strategies import mac_platform_tokens
+from hypothesis_faker.strategies import mac_processors
 from hypothesis_faker.strategies import nic_handle_lists
 from hypothesis_faker.strategies import nic_handles
+from hypothesis_faker.strategies import operas
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
 from hypothesis_faker.strategies import ripe_ids
+from hypothesis_faker.strategies import safaris
 from hypothesis_faker.strategies import safe_domain_names
 from hypothesis_faker.strategies import safe_emails
 from hypothesis_faker.strategies import slugs
@@ -53,7 +64,9 @@ from hypothesis_faker.strategies import uri_pages
 from hypothesis_faker.strategies import uri_paths
 from hypothesis_faker.strategies import uris
 from hypothesis_faker.strategies import urls
+from hypothesis_faker.strategies import user_agents
 from hypothesis_faker.strategies import user_names
+from hypothesis_faker.strategies import windows_platform_tokens
 
 
 __all__ = [
@@ -119,5 +132,19 @@ __all__ = [
     "uri_paths",
     "urls",
     "user_names",
+    # user_agent ##############################################################
+    "android_platform_tokens",
+    "chromes",
+    "firefoxes",
+    "internet_explorers",
+    "ios_platform_tokens",
+    "linux_platform_tokens",
+    "linux_processors",
+    "mac_platform_tokens",
+    "mac_processors",
+    "operas",
+    "safaris",
+    "user_agents",
+    "windows_platform_tokens",
 ]
 __version__ = "0.1.3"

@@ -27,8 +27,8 @@ from hypothesis_faker.settings import get_root
 from hypothesis_faker.settings import get_update_freq
 
 
-ArgsType = Tuple[Tuple[Any, ...], Tuple[Tuple[str, Any], ...]]
-_ARGS_HASHES: Dict[ArgsType, str] = {}
+_ArgsType = Tuple[Tuple[Any, ...], Tuple[Tuple[str, Any], ...]]
+_ARGS_HASHES: Dict[_ArgsType, str] = {}
 _FAKER = Faker()
 _ITEMS: Dict[Tuple["Provider", str], List[Any]] = {}
 
@@ -109,6 +109,22 @@ class Provider(Enum):
     uri_path = auto()
     url = auto()
     user_name = auto()
+
+    # user_agent ##############################################################
+
+    android_platform_token = auto()
+    chrome = auto()
+    firefox = auto()
+    internet_explorer = auto()
+    ios_platform_token = auto()
+    linux_platform_token = auto()
+    linux_processor = auto()
+    mac_platform_token = auto()
+    mac_processor = auto()
+    opera = auto()
+    safari = auto()
+    user_agent = auto()
+    windows_platform_token = auto()
 
     # properties/methods ######################################################
 
