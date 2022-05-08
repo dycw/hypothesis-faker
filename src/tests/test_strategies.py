@@ -11,6 +11,7 @@ from pytest import param
 
 from hypothesis_faker import abas
 from hypothesis_faker import addresses
+from hypothesis_faker import android_platform_tokens
 from hypothesis_faker import ascii_company_emails
 from hypothesis_faker import ascii_emails
 from hypothesis_faker import ascii_free_emails
@@ -18,6 +19,7 @@ from hypothesis_faker import ascii_safe_emails
 from hypothesis_faker import bank_countries
 from hypothesis_faker import bbans
 from hypothesis_faker import building_numbers
+from hypothesis_faker import chromes
 from hypothesis_faker import cities
 from hypothesis_faker import city_suffixes
 from hypothesis_faker import company_emails
@@ -30,6 +32,7 @@ from hypothesis_faker import dgas
 from hypothesis_faker import domain_names
 from hypothesis_faker import domain_words
 from hypothesis_faker import emails
+from hypothesis_faker import firefoxes
 from hypothesis_faker import free_email_domains
 from hypothesis_faker import free_emails
 from hypothesis_faker import hostnames
@@ -37,18 +40,26 @@ from hypothesis_faker import http_methods
 from hypothesis_faker import iana_ids
 from hypothesis_faker import ibans
 from hypothesis_faker import image_urls
+from hypothesis_faker import internet_explorers
+from hypothesis_faker import ios_platform_tokens
 from hypothesis_faker import ipv4_network_classes
 from hypothesis_faker import ipv4_privates
 from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
 from hypothesis_faker import license_plates
+from hypothesis_faker import linux_platform_tokens
+from hypothesis_faker import linux_processors
 from hypothesis_faker import mac_addresses
+from hypothesis_faker import mac_platform_tokens
+from hypothesis_faker import mac_processors
 from hypothesis_faker import nic_handle_lists
 from hypothesis_faker import nic_handles
+from hypothesis_faker import operas
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
 from hypothesis_faker import ripe_ids
+from hypothesis_faker import safaris
 from hypothesis_faker import safe_domain_names
 from hypothesis_faker import safe_emails
 from hypothesis_faker import slugs
@@ -64,7 +75,9 @@ from hypothesis_faker import uri_pages
 from hypothesis_faker import uri_paths
 from hypothesis_faker import uris
 from hypothesis_faker import urls
+from hypothesis_faker import user_agents
 from hypothesis_faker import user_names
+from hypothesis_faker import windows_platform_tokens
 from tests.utilities import env
 
 
@@ -137,6 +150,20 @@ from tests.utilities import env
         param(uri_paths, str),
         param(urls, str),
         param(user_names, str),
+        # user_agent ##########################################################
+        param(android_platform_tokens, str),
+        param(chromes, str),
+        param(firefoxes, str),
+        param(internet_explorers, str),
+        param(ios_platform_tokens, str),
+        param(linux_platform_tokens, str),
+        param(linux_processors, str),
+        param(mac_platform_tokens, str),
+        param(mac_processors, str),
+        param(operas, str),
+        param(safaris, str),
+        param(user_agents, str),
+        param(windows_platform_tokens, str),
     ],
 )
 def test_strategies(

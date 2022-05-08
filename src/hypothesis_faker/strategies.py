@@ -297,3 +297,69 @@ def urls(*, schemes: Optional[List[str]] = None) -> SearchStrategy[str]:
 
 def user_names() -> SearchStrategy[str]:
     return Provider.user_name.get_strategy()
+
+
+# user_agent ##################################################################
+
+
+def android_platform_tokens() -> SearchStrategy[str]:
+    return Provider.android_platform_token.get_strategy()
+
+
+def chromes(
+    *,
+    version_from: int = 13,
+    version_to: int = 63,
+    build_from: int = 800,
+    build_to: int = 899,
+) -> SearchStrategy[str]:
+    return Provider.chrome.get_strategy(
+        version_from=version_from,
+        version_to=version_to,
+        build_from=build_from,
+        build_to=build_to,
+    )
+
+
+def firefoxes() -> SearchStrategy[str]:
+    return Provider.firefox.get_strategy()
+
+
+def internet_explorers() -> SearchStrategy[str]:
+    return Provider.internet_explorer.get_strategy()
+
+
+def ios_platform_tokens() -> SearchStrategy[str]:
+    return Provider.ios_platform_token.get_strategy()
+
+
+def linux_platform_tokens() -> SearchStrategy[str]:
+    return Provider.linux_platform_token.get_strategy()
+
+
+def linux_processors() -> SearchStrategy[str]:
+    return Provider.linux_processor.get_strategy()
+
+
+def mac_platform_tokens() -> SearchStrategy[str]:
+    return Provider.mac_platform_token.get_strategy()
+
+
+def mac_processors() -> SearchStrategy[str]:
+    return Provider.mac_processor.get_strategy()
+
+
+def operas() -> SearchStrategy[str]:
+    return Provider.opera.get_strategy()
+
+
+def safaris() -> SearchStrategy[str]:
+    return Provider.safari.get_strategy()
+
+
+def user_agents() -> SearchStrategy[str]:
+    return Provider.user_agent.get_strategy()
+
+
+def windows_platform_tokens() -> SearchStrategy[str]:
+    return Provider.windows_platform_token.get_strategy()
