@@ -49,8 +49,6 @@ homepage = "https://github.com/dycw/hypothesis-faker"
 python = "^3.7"
 faker = "^13.7.0"
 hypothesis = "^6.14.0"
-more-itertools = "^8.13.0"
-strenum = "^0.4.7"
 writer-cm = "^1.1.1"
 xdg = "^5.1.1"
 
