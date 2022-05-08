@@ -11,7 +11,17 @@ from pytest import param
 
 from hypothesis_faker import addresses
 from hypothesis_faker import building_numbers
+from hypothesis_faker import cities
+from hypothesis_faker import city_suffixes
 from hypothesis_faker import coordinates
+from hypothesis_faker import countries
+from hypothesis_faker import country_codes
+from hypothesis_faker import current_countries
+from hypothesis_faker import current_country_codes
+from hypothesis_faker import postcodes
+from hypothesis_faker import street_addresses
+from hypothesis_faker import street_names
+from hypothesis_faker import street_suffixes
 from tests.utilities import env
 
 
@@ -22,6 +32,16 @@ from tests.utilities import env
         # address #############################################################
         param(addresses, str),
         param(building_numbers, str),
+        param(cities, str),
+        param(city_suffixes, str),
+        param(countries, str),
+        param(country_codes, str),
+        param(current_countries, str),
+        param(current_country_codes, str),
+        param(postcodes, str),
+        param(street_addresses, str),
+        param(street_names, str),
+        param(street_suffixes, str),
         # geo #################################################################
         param(coordinates, Decimal),
     ],

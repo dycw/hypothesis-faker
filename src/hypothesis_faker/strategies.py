@@ -30,8 +30,8 @@ def countries() -> SearchStrategy[str]:
     return Provider.country.get_strategy()
 
 
-def country_codes() -> SearchStrategy[str]:
-    return Provider.country_code.get_strategy()
+def country_codes(*, representation: str = "alpha-2") -> SearchStrategy[str]:
+    return Provider.country_code.get_strategy(representation=representation)
 
 
 def current_countries() -> SearchStrategy[str]:
