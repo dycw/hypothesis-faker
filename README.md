@@ -1,14 +1,19 @@
 # hypothesis-faker
 
-Some [faker](https://github.com/joke2k/faker/) providers ported to [hypothesis](https://github.com/HypothesisWorks/hypothesis)
-strategies
+[`faker`](https://github.com/joke2k/faker/) providers exported as
+[`hypothesis`](https://github.com/HypothesisWorks/hypothesis) strategies.
 
 ## Introduction
 
-Hypothesis is great, but sometime you need domain-specific data outside of the
-standard hypothesis extras. This is where faker shines -- many domains have been
-carved out and explored. This is why I decided to port some faker providers to
-hypothesis strategies.
+`hypothesis` is great, but sometime you need domain-specific data outside of the
+standard `hypothesis` extras. This is where `faker` shines -- many domains have
+been carved out and explored. This package exports the `faker` providers as
+`hypothesis` strategies.
+
+This is done by building a simple cache of `faker` objects from which
+`hypothesis` will sample from. The cache is initially seeded and periodically
+expanded (to ensure new samples flow through), whilst kept under a limited size
+(to avoid unbounded file sizes).
 
 ## Installation
 
