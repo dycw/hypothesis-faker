@@ -98,8 +98,8 @@ repos:
   - repo: https://github.com/dycw/pre-commit-hooks
     rev: 0.4.22
     hooks:
-      # - id: run-bump2version
-      #   args: [--setup-cfg]
+      - id: run-bump2version
+        args: [--setup-cfg]
       - id: run-poetry-export
         args: [--filename=requirements-all.txt, --dev, --without-hashes]
       - id: run-scan-deps
