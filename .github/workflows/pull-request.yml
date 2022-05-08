@@ -6,40 +6,20 @@ on:
       - master
 
 jobs:
-  pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0
-      - uses: pre-commit/action@v2.0.0
-
-  pytest:
-    name: pytest ${{ matrix.version }}
-    runs-on: ubuntu-latest
+  test:
+    name: test / ${{ matrix.os }} / ${{ matrix.version }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        version: ["3.7", "3.8", "3.9", "3.10"]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - run: pipx install poetry
+      - uses: actions/setup-python@v3
         with:
-          version: ${{ matrix.version }}
-      - uses: snok/install-poetry@v1.1.2
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-      - name: pytest
-        run: |
-          source .venv/bin/activate
-          pytest -nauto
+          python-version: ${{ matrix.version }}
+          cache: "poetry"
+      - run: poetry install
+      - run: poetry run pytest

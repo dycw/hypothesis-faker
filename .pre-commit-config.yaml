@@ -1,98 +1,105 @@
+ci:
+  autoupdate_schedule: weekly
+
+default_stages: [commit]
+
 repos:
-  - repo: https://github.com/myint/autoflake
-    rev: v1.4
-    hooks:
-      - id: autoflake
-        args:
-          - --in-place
-          - --remove-all-unused-imports
-          - --remove-duplicate-keys
-          - --remove-unused-variables
-  - repo: https://github.com/psf/black
-    rev: 21.6b0
-    hooks:
-      - id: black
-  - repo: https://github.com/PyCQA/flake8
-    rev: 3.9.2
-    hooks:
-      - id: flake8
-        additional_dependencies:
-          - flake8-absolute-import
-          - flake8-annotations
-          - flake8-bugbear
-          - flake8-builtins
-          - flake8-comprehensions
-          - flake8-debugger
-          - flake8-eradicate
-          - flake8-executable
-          - flake8-future-import
-          - flake8-implicit-str-concat
-          - flake8-mutable
-          - flake8-print
-          - flake8-pytest-style
-          - flake8-simplify
-          - flake8-string-format
-  - repo: https://github.com/markdownlint/markdownlint
-    rev: v0.11.0
-    hooks:
-      - id: markdownlint
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.3.1
-    hooks:
-      - id: prettier
-  - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.13.0
-    hooks:
-      - id: validate_manifest
-  - repo: https://github.com/dycw/pre-commit-hooks
-    rev: 0.2.38
-    hooks:
-      - id: check-settings
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
-    hooks:
-      - id: check-case-conflict
-      - id: check-executables-have-shebangs
-      - id: check-merge-conflict
-      - id: check-symlinks
-      - id: check-vcs-permalinks
-      - id: destroyed-symlinks
-      - id: detect-private-key
-      - id: end-of-file-fixer
-      - id: fix-byte-order-marker
-      - id: mixed-line-ending
-        args: [--fix=lf]
-      - id: no-commit-to-branch
-      - id: trailing-whitespace
+  # fixers
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.19.4
+    rev: v2.32.1
     hooks:
       - id: pyupgrade
-        args: [--py36-plus]
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.8.0
-    hooks:
-      - id: isort
+        args: [--py37-plus]
   - repo: https://github.com/asottile/yesqa
-    rev: v1.2.3
+    rev: v1.3.0
     hooks:
       - id: yesqa
         additional_dependencies:
           - flake8-absolute-import
           - flake8-annotations
+          - flake8-bandit
           - flake8-bugbear
-          - flake8-builtins
           - flake8-comprehensions
           - flake8-debugger
           - flake8-eradicate
           - flake8-executable
-          - flake8-future-import
-          - flake8-implicit-str-concat
-          - flake8-mutable
+          - flake8-no-pep420
+          - flake8-pie
           - flake8-print
-          - flake8-pytest-style
           - flake8-simplify
-          - flake8-string-format
-  - repo: meta
+          - flake8-unused-arguments
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.6.2
     hooks:
-      - id: check-useless-excludes
+      - id: prettier
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        args:
+          [
+            --in-place,
+            --remove-all-unused-imports,
+            --remove-duplicate-keys,
+            --remove-unused-variables,
+          ]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+  # linters
+  - repo: https://github.com/compwa/mirrors-pyright
+    rev: "v1.1.244"
+    hooks:
+      - id: pyright
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+      - id: markdownlint
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: no-commit-to-branch
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-absolute-import
+          - flake8-annotations
+          - flake8-bandit
+          - flake8-bugbear
+          - flake8-comprehensions
+          - flake8-debugger
+          - flake8-eradicate
+          - flake8-no-pep420
+          - flake8-pie
+          - flake8-print
+          - flake8-simplify
+          - flake8-unused-arguments
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+  # others
+  - repo: https://github.com/dycw/pre-commit-hooks
+    rev: 0.4.22
+    hooks:
+      # - id: run-bump2version
+      #   args: [--setup-cfg]
+      - id: run-poetry-export
+        args: [--filename=requirements-all.txt, --dev, --without-hashes]
+      - id: run-scan-deps
