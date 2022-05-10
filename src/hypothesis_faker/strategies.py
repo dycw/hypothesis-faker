@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import List
 from typing import Optional
+from typing import Tuple
 from typing import Union
 
 from hypothesis.strategies import SearchStrategy
@@ -106,6 +107,39 @@ def swift11s(
 
 def swift8s(*, use_dataset: bool = False) -> SearchStrategy[str]:
     return Provider.swift8.get_strategy(use_dataset=use_dataset)
+
+
+# barcode #####################################################################
+
+
+def eans(
+    *,
+    length: int = 13,
+    prefixes: Tuple[Union[int, str, Tuple[Union[int, str], ...]], ...] = (),
+) -> SearchStrategy[str]:
+    return Provider.ean.get_strategy(length=length, prefixes=prefixes)
+
+
+def ean13s(
+    *, prefixes: Tuple[Union[int, str, Tuple[Union[int, str], ...]], ...] = ()
+) -> SearchStrategy[str]:
+    return Provider.ean13.get_strategy(prefixes=prefixes)
+
+
+def ean8s(*, prefixes: Tuple[()] = ()) -> SearchStrategy[str]:
+    return Provider.ean8.get_strategy(prefixes=prefixes)
+
+
+def localized_eans(*, length: int = 13) -> SearchStrategy[str]:
+    return Provider.localized_ean.get_strategy(length=length)
+
+
+def localized_ean13s() -> SearchStrategy[str]:
+    return Provider.localized_ean13.get_strategy()
+
+
+def localized_ean8s() -> SearchStrategy[str]:
+    return Provider.localized_ean8.get_strategy()
 
 
 # geo #########################################################################

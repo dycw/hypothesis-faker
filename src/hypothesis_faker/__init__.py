@@ -20,6 +20,9 @@ from hypothesis_faker.strategies import current_country_codes
 from hypothesis_faker.strategies import dgas
 from hypothesis_faker.strategies import domain_names
 from hypothesis_faker.strategies import domain_words
+from hypothesis_faker.strategies import ean8s
+from hypothesis_faker.strategies import ean13s
+from hypothesis_faker.strategies import eans
 from hypothesis_faker.strategies import emails
 from hypothesis_faker.strategies import firefoxes
 from hypothesis_faker.strategies import free_email_domains
@@ -39,6 +42,9 @@ from hypothesis_faker.strategies import ipv6s
 from hypothesis_faker.strategies import license_plates
 from hypothesis_faker.strategies import linux_platform_tokens
 from hypothesis_faker.strategies import linux_processors
+from hypothesis_faker.strategies import localized_ean8s
+from hypothesis_faker.strategies import localized_ean13s
+from hypothesis_faker.strategies import localized_eans
 from hypothesis_faker.strategies import mac_addresses
 from hypothesis_faker.strategies import mac_platform_tokens
 from hypothesis_faker.strategies import mac_processors
@@ -94,6 +100,13 @@ __all__ = [
     "swifts",
     "swift11s",
     "swift8s",
+    # barcode #################################################################
+    "eans",
+    "ean13s",
+    "ean8s",
+    "localized_eans",
+    "localized_ean13s",
+    "localized_ean8s",
     # geo #####################################################################
     "coordinates",
     # internet ################################################################
@@ -147,4 +160,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.5"
+__version__ = "0.1.6"

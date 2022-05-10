@@ -31,6 +31,9 @@ from hypothesis_faker import current_country_codes
 from hypothesis_faker import dgas
 from hypothesis_faker import domain_names
 from hypothesis_faker import domain_words
+from hypothesis_faker import ean8s
+from hypothesis_faker import ean13s
+from hypothesis_faker import eans
 from hypothesis_faker import emails
 from hypothesis_faker import firefoxes
 from hypothesis_faker import free_email_domains
@@ -50,6 +53,9 @@ from hypothesis_faker import ipv6s
 from hypothesis_faker import license_plates
 from hypothesis_faker import linux_platform_tokens
 from hypothesis_faker import linux_processors
+from hypothesis_faker import localized_ean8s
+from hypothesis_faker import localized_ean13s
+from hypothesis_faker import localized_eans
 from hypothesis_faker import mac_addresses
 from hypothesis_faker import mac_platform_tokens
 from hypothesis_faker import mac_processors
@@ -108,6 +114,13 @@ from tests.utilities import env
         param(swifts, str),
         param(swift11s, str),
         param(swift8s, str),
+        # barcode #############################################################
+        param(eans, str),
+        param(ean13s, str),
+        param(ean8s, str),
+        param(localized_eans, str),
+        param(localized_ean13s, str),
+        param(localized_ean8s, str),
         # geo #################################################################
         param(coordinates, Decimal),
         # internet ############################################################
