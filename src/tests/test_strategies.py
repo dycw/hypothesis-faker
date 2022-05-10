@@ -88,6 +88,7 @@ from hypothesis_faker.strategies import color_names
 from hypothesis_faker.strategies import colors
 from hypothesis_faker.strategies import hex_colors
 from hypothesis_faker.strategies import rgb_colors
+from hypothesis_faker.strategies import rgb_css_colors
 from hypothesis_faker.strategies import safe_color_names
 from tests.utilities import env
 
@@ -131,7 +132,7 @@ from tests.utilities import env
         param(color_names, str),
         param(hex_colors, str),
         param(rgb_colors, str),
-        param(rgb_colors, str),
+        param(rgb_css_colors, str),
         param(safe_color_names, str),
         # geo #################################################################
         param(coordinates, Decimal),
