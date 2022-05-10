@@ -1,8 +1,12 @@
 from decimal import Decimal
+from typing import Any
+from typing import Callable
 from typing import List
 from typing import Optional
+from typing import Sequence
 from typing import Tuple
 from typing import Union
+from uuid import UUID
 
 from faker.typing import HueType
 from hypothesis.strategies import SearchStrategy
@@ -366,6 +370,189 @@ def urls(*, schemes: Optional[List[str]] = None) -> SearchStrategy[str]:
 
 def user_names() -> SearchStrategy[str]:
     return Provider.user_name.get_strategy()
+
+
+# misc ########################################################################
+
+
+def binaries(*, length: int = 1048576) -> SearchStrategy[bytes]:
+    return Provider.binary.get_strategy(length=length)
+
+
+def booleans(*, chance_of_getting_true: int = 50) -> SearchStrategy[bool]:
+    return Provider.boolean.get_strategy(
+        chance_of_getting_true=chance_of_getting_true
+    )
+
+
+def csvs(
+    *,
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+) -> SearchStrategy[str]:
+    return Provider.csv.get_strategy(
+        header=header,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        include_row_ids=include_row_ids,
+    )
+
+
+def dsvs(
+    *,
+    dialect: str = "faker-csv",
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+    **fmtparams: Any,
+) -> SearchStrategy[str]:
+    return Provider.dsv.get_strategy(
+        dialect=dialect,
+        header=header,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        include_row_ids=include_row_ids,
+        **fmtparams,
+    )
+
+
+def fixed_widths(
+    *,
+    data_columns: Optional[List[Any]] = None,
+    num_rows: int = 10,
+    align: str = "left",
+) -> SearchStrategy[str]:
+    return Provider.fixed_width.get_strategy(
+        data_columns=data_columns, num_rows=num_rows, align=align
+    )
+
+
+def images(
+    *,
+    size: Tuple[int, int] = (256, 256),
+    image_format: str = "png",
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+) -> SearchStrategy[bytes]:
+    return Provider.image.get_strategy(
+        size=size, image_format=image_format, hue=hue, luminosity=luminosity
+    )
+
+
+def jsons(
+    *,
+    data_columns: Optional[List[Any]] = None,
+    num_rows: int = 10,
+    indent: Optional[int] = None,
+) -> SearchStrategy[str]:
+    return Provider.json.get_strategy(
+        data_columns=data_columns, num_rows=num_rows, indent=indent
+    )
+
+
+def md5s(*, raw_output: bool = False) -> SearchStrategy[Union[bytes, str]]:
+    return Provider.md5.get_strategy(raw_output=raw_output)
+
+
+def null_booleans() -> SearchStrategy[Optional[bool]]:
+    return Provider.null_boolean.get_strategy()
+
+
+def passwords(
+    *,
+    length: int = 10,
+    special_chars: bool = True,
+    digits: bool = True,
+    upper_case: bool = True,
+    lower_case: bool = True,
+) -> SearchStrategy[str]:
+    return Provider.password.get_strategy(
+        length=length,
+        special_chars=special_chars,
+        digits=digits,
+        upper_case=upper_case,
+        lower_case=lower_case,
+    )
+
+
+def psvs(
+    *,
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+) -> SearchStrategy[str]:
+    return Provider.psv.get_strategy(
+        header=header,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        include_row_ids=include_row_ids,
+    )
+
+
+def sha1s(*, raw_output: bool = False) -> SearchStrategy[Union[bytes, str]]:
+    return Provider.sha1.get_strategy(raw_output=raw_output)
+
+
+def sha256s(*, raw_output: bool = False) -> SearchStrategy[Union[bytes, str]]:
+    return Provider.sha256.get_strategy(raw_output=raw_output)
+
+
+def tars(
+    *,
+    uncompressed_size: int = 65536,
+    num_files: int = 1,
+    min_file_size: int = 4096,
+    compression: Optional[str] = None,
+) -> SearchStrategy[bytes]:
+    return Provider.tar.get_strategy(
+        uncompressed_size=uncompressed_size,
+        num_files=num_files,
+        min_file_size=min_file_size,
+        compression=compression,
+    )
+
+
+def tsvs(
+    *,
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+) -> SearchStrategy[str]:
+    return Provider.tsv.get_strategy(
+        header=header,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        include_row_ids=include_row_ids,
+    )
+
+
+def uuid4s(
+    *,
+    cast_to: Optional[
+        Union[Callable[[UUID], str], Callable[[UUID], bytes], None]
+    ] = str,
+) -> SearchStrategy[Union[bytes, str, UUID]]:
+    return Provider.uuid4.get_strategy(cast_to=cast_to)
+
+
+def zips(
+    *,
+    uncompressed_size: int = 65536,
+    num_files: int = 1,
+    min_file_size: int = 4096,
+    compression: Optional[str] = None,
+) -> SearchStrategy[str]:
+    return Provider.zip.get_strategy(
+        uncompressed_size=uncompressed_size,
+        num_files=num_files,
+        min_file_size=min_file_size,
+        compression=compression,
+    )
 
 
 # user_agent ##################################################################

@@ -39,7 +39,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hypothesis-faker"
-version = "0.1.7"
+version = "0.1.8"
 description = "faker providers wrapped as hypothesis strategies"
 authors = ["Derek Wan <d.wan@icloud.com>"]
 license = "MIT"
@@ -72,6 +72,7 @@ flake8-simplify = "^0.19.2"
 flake8-unused-arguments = "^0.0.10"
 isort = "^5.10.1"
 nox = "^2022.1.7"
+pillow = "^9.1.0"
 poetry-deps-scanner = "^1.0.1"
 pre-commit = "^2.18.1"
 pyclean = "^2.2.0"
