@@ -4,6 +4,7 @@ from typing import Optional
 from typing import Tuple
 from typing import Union
 
+from faker.typing import HueType
 from hypothesis.strategies import SearchStrategy
 
 from hypothesis_faker.providers import Provider
@@ -140,6 +141,40 @@ def localized_ean13s() -> SearchStrategy[str]:
 
 def localized_ean8s() -> SearchStrategy[str]:
     return Provider.localized_ean8.get_strategy()
+
+
+# color #######################################################################
+
+
+def colors(
+    *,
+    hue: Optional[HueType] = None,
+    luminosity: Optional[str] = None,
+    color_format: str = "hex",
+) -> SearchStrategy[str]:
+    return Provider.color.get_strategy(
+        hue=hue, luminosity=luminosity, color_format=color_format
+    )
+
+
+def color_names() -> SearchStrategy[str]:
+    return Provider.color_name.get_strategy()
+
+
+def hex_colors() -> SearchStrategy[str]:
+    return Provider.hex_color.get_strategy()
+
+
+def rgb_colors() -> SearchStrategy[str]:
+    return Provider.rgb_color.get_strategy()
+
+
+def rgb_css_colors() -> SearchStrategy[str]:
+    return Provider.rgb_css_color.get_strategy()
+
+
+def safe_color_names() -> SearchStrategy[str]:
+    return Provider.safe_color_name.get_strategy()
 
 
 # geo #########################################################################
