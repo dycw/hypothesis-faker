@@ -78,6 +78,14 @@ class Provider(Enum):
     localized_ean13 = auto()
     localized_ean8 = auto()
 
+    # color ###################################################################
+    color = auto()
+    color_name = auto()
+    hex_color = auto()
+    rgb_color = auto()
+    rgb_css_color = auto()
+    safe_color_name = auto()
+
     # geo #####################################################################
     coordinate = auto()
 

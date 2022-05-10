@@ -11,6 +11,8 @@ from hypothesis_faker.strategies import building_numbers
 from hypothesis_faker.strategies import chromes
 from hypothesis_faker.strategies import cities
 from hypothesis_faker.strategies import city_suffixes
+from hypothesis_faker.strategies import color_names
+from hypothesis_faker.strategies import colors
 from hypothesis_faker.strategies import company_emails
 from hypothesis_faker.strategies import coordinates
 from hypothesis_faker.strategies import countries
@@ -27,6 +29,7 @@ from hypothesis_faker.strategies import emails
 from hypothesis_faker.strategies import firefoxes
 from hypothesis_faker.strategies import free_email_domains
 from hypothesis_faker.strategies import free_emails
+from hypothesis_faker.strategies import hex_colors
 from hypothesis_faker.strategies import hostnames
 from hypothesis_faker.strategies import http_methods
 from hypothesis_faker.strategies import iana_ids
@@ -53,8 +56,11 @@ from hypothesis_faker.strategies import nic_handles
 from hypothesis_faker.strategies import operas
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
+from hypothesis_faker.strategies import rgb_colors
+from hypothesis_faker.strategies import rgb_css_colors
 from hypothesis_faker.strategies import ripe_ids
 from hypothesis_faker.strategies import safaris
+from hypothesis_faker.strategies import safe_color_names
 from hypothesis_faker.strategies import safe_domain_names
 from hypothesis_faker.strategies import safe_emails
 from hypothesis_faker.strategies import slugs
@@ -107,6 +113,13 @@ __all__ = [
     "localized_eans",
     "localized_ean13s",
     "localized_ean8s",
+    # color ###################################################################
+    "colors",
+    "color_names",
+    "hex_colors",
+    "rgb_colors",
+    "rgb_css_colors",
+    "safe_color_names",
     # geo #####################################################################
     "coordinates",
     # internet ################################################################
@@ -160,4 +173,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.6"
+__version__ = "0.1.7"
