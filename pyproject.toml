@@ -39,7 +39,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hypothesis-faker"
-version = "0.1.5"
+version = "0.1.6"
 description = "faker providers wrapped as hypothesis strategies"
 authors = ["Derek Wan <d.wan@icloud.com>"]
 license = "MIT"
@@ -47,7 +47,8 @@ homepage = "https://github.com/dycw/hypothesis-faker"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-faker = "^13.7.0"
+"backports.cached-property" = "^1.0.1"
+faker = "^13.11.0"
 hypothesis = "^6.14.0"
 writer-cm = "^1.1.1"
 xdg = "^5.1.1"

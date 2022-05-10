@@ -15,10 +15,10 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-from _pytest.compat import cached_property
+from backports.cached_property import cached_property
 from faker import Faker
 from hypothesis.strategies import SearchStrategy
-from hypothesis.strategies._internal.core import sampled_from
+from hypothesis.strategies import sampled_from
 from writer_cm import writer_cm
 
 from hypothesis_faker.settings import get_duration
@@ -69,6 +69,14 @@ class Provider(Enum):
     swift = auto()
     swift11 = auto()
     swift8 = auto()
+
+    # barcode #################################################################
+    ean = auto()
+    ean13 = auto()
+    ean8 = auto()
+    localized_ean = auto()
+    localized_ean13 = auto()
+    localized_ean8 = auto()
 
     # geo #####################################################################
     coordinate = auto()
