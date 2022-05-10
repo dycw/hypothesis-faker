@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import Any
 from typing import Callable
+from uuid import UUID
 
 from hypothesis import given
 from hypothesis.strategies import DataObject
@@ -18,6 +19,8 @@ from hypothesis_faker import ascii_free_emails
 from hypothesis_faker import ascii_safe_emails
 from hypothesis_faker import bank_countries
 from hypothesis_faker import bbans
+from hypothesis_faker import binaries
+from hypothesis_faker import booleans
 from hypothesis_faker import building_numbers
 from hypothesis_faker import chromes
 from hypothesis_faker import cities
@@ -26,16 +29,19 @@ from hypothesis_faker import company_emails
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
 from hypothesis_faker import country_codes
+from hypothesis_faker import csvs
 from hypothesis_faker import current_countries
 from hypothesis_faker import current_country_codes
 from hypothesis_faker import dgas
 from hypothesis_faker import domain_names
 from hypothesis_faker import domain_words
+from hypothesis_faker import dsvs
 from hypothesis_faker import ean8s
 from hypothesis_faker import ean13s
 from hypothesis_faker import eans
 from hypothesis_faker import emails
 from hypothesis_faker import firefoxes
+from hypothesis_faker import fixed_widths
 from hypothesis_faker import free_email_domains
 from hypothesis_faker import free_emails
 from hypothesis_faker import hostnames
@@ -43,6 +49,7 @@ from hypothesis_faker import http_methods
 from hypothesis_faker import iana_ids
 from hypothesis_faker import ibans
 from hypothesis_faker import image_urls
+from hypothesis_faker import images
 from hypothesis_faker import internet_explorers
 from hypothesis_faker import ios_platform_tokens
 from hypothesis_faker import ipv4_network_classes
@@ -50,6 +57,7 @@ from hypothesis_faker import ipv4_privates
 from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
+from hypothesis_faker import jsons
 from hypothesis_faker import license_plates
 from hypothesis_faker import linux_platform_tokens
 from hypothesis_faker import linux_processors
@@ -59,15 +67,21 @@ from hypothesis_faker import localized_eans
 from hypothesis_faker import mac_addresses
 from hypothesis_faker import mac_platform_tokens
 from hypothesis_faker import mac_processors
+from hypothesis_faker import md5s
 from hypothesis_faker import nic_handle_lists
 from hypothesis_faker import nic_handles
+from hypothesis_faker import null_booleans
 from hypothesis_faker import operas
+from hypothesis_faker import passwords
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
+from hypothesis_faker import psvs
 from hypothesis_faker import ripe_ids
 from hypothesis_faker import safaris
 from hypothesis_faker import safe_domain_names
 from hypothesis_faker import safe_emails
+from hypothesis_faker import sha1s
+from hypothesis_faker import sha256s
 from hypothesis_faker import slugs
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
@@ -75,7 +89,9 @@ from hypothesis_faker import street_suffixes
 from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
+from hypothesis_faker import tars
 from hypothesis_faker import tlds
+from hypothesis_faker import tsvs
 from hypothesis_faker import uri_extensions
 from hypothesis_faker import uri_pages
 from hypothesis_faker import uri_paths
@@ -83,7 +99,9 @@ from hypothesis_faker import uris
 from hypothesis_faker import urls
 from hypothesis_faker import user_agents
 from hypothesis_faker import user_names
+from hypothesis_faker import uuid4s
 from hypothesis_faker import windows_platform_tokens
+from hypothesis_faker import zips
 from hypothesis_faker.strategies import color_names
 from hypothesis_faker.strategies import colors
 from hypothesis_faker.strategies import hex_colors
@@ -176,6 +194,28 @@ from tests.utilities import env
         param(uri_paths, str),
         param(urls, str),
         param(user_names, str),
+        # misc ################################################################
+        param(binaries, bytes),
+        param(booleans, bool),
+        param(csvs, str),
+        param(dsvs, str),
+        param(fixed_widths, str),
+        param(images, bytes),
+        param(jsons, str),
+        param(md5s, (bytes, str)),
+        param(null_booleans, (bool, type(None))),
+        param(passwords, str),
+        param(psvs, str),
+        param(sha1s, (bytes, str)),
+        param(sha256s, (bytes, str)),
+        param(tars, bytes),
+        param(tsvs, str),
+        param(
+            uuid4s,
+            (bytes, str, UUID),
+            marks=mark.xfail(reason="Callabe is not serializable yet"),
+        ),
+        param(zips, bytes),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),

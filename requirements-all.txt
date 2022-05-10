@@ -47,6 +47,7 @@ nox==2022.1.7; python_version >= "3.6"
 packaging==21.3; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 pathspec==0.9.0; python_full_version >= "3.6.2"
 pbr==5.9.0; python_version >= "3.7"
+pillow==9.1.0; python_version >= "3.7"
 platformdirs==2.5.2; python_version >= "3.7" and python_full_version >= "3.6.2" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7")
 pluggy==1.0.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
 poetry-deps-scanner==1.0.1; python_version >= "3.7"
@@ -55,7 +56,7 @@ py==1.11.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_
 pyclean==2.2.0
 pycodestyle==2.8.0; python_full_version >= "3.6.1" and python_version >= "3.7" and python_version < "4.0"
 pyflakes==2.4.0; python_full_version >= "3.6.1" and python_version >= "3.7" and python_version < "4.0"
-pyparsing==3.0.8; python_full_version >= "3.6.8" and python_version >= "3.7"
+pyparsing==3.0.9; python_full_version >= "3.6.8" and python_version >= "3.7"
 pytest-cov==3.0.0; python_version >= "3.6"
 pytest-forked==1.4.0; python_version >= "3.6"
 pytest-instafail==0.4.2; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0")

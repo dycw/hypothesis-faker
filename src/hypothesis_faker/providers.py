@@ -126,8 +126,26 @@ class Provider(Enum):
     url = auto()
     user_name = auto()
 
-    # user_agent ##############################################################
+    # misc ####################################################################
+    binary = auto()
+    boolean = auto()
+    csv = auto()
+    dsv = auto()
+    fixed_width = auto()
+    image = auto()
+    json = auto()
+    md5 = auto()
+    null_boolean = auto()
+    password = auto()
+    psv = auto()
+    sha1 = auto()
+    sha256 = auto()
+    tar = auto()
+    tsv = auto()
+    uuid4 = auto()
+    zip = auto()
 
+    # user_agent ##############################################################
     android_platform_token = auto()
     chrome = auto()
     firefox = auto()
