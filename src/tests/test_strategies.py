@@ -1,3 +1,4 @@
+import datetime as dt
 from decimal import Decimal
 from typing import Any
 from typing import Callable
@@ -12,6 +13,7 @@ from pytest import param
 
 from hypothesis_faker import abas
 from hypothesis_faker import addresses
+from hypothesis_faker import am_pms
 from hypothesis_faker import android_platform_tokens
 from hypothesis_faker import ascii_company_emails
 from hypothesis_faker import ascii_emails
@@ -21,19 +23,55 @@ from hypothesis_faker import bank_countries
 from hypothesis_faker import bbans
 from hypothesis_faker import binaries
 from hypothesis_faker import booleans
+from hypothesis_faker import bss
 from hypothesis_faker import building_numbers
+from hypothesis_faker import catch_phrases
+from hypothesis_faker import centuries
 from hypothesis_faker import chromes
 from hypothesis_faker import cities
 from hypothesis_faker import city_suffixes
 from hypothesis_faker import color_names
 from hypothesis_faker import colors
+from hypothesis_faker import companies
 from hypothesis_faker import company_emails
+from hypothesis_faker import company_suffixes
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
 from hypothesis_faker import country_codes
+from hypothesis_faker import credit_card_expires
+from hypothesis_faker import credit_card_numbers
+from hypothesis_faker import credit_card_providers
+from hypothesis_faker import credit_card_security_codes
+from hypothesis_faker import credit_cards_full
+from hypothesis_faker import cryptocurrencies
+from hypothesis_faker import cryptocurrency_codes
+from hypothesis_faker import cryptocurrency_names
 from hypothesis_faker import csvs
+from hypothesis_faker import currencies
+from hypothesis_faker import currency_codes
+from hypothesis_faker import currency_names
+from hypothesis_faker import currency_symbols
 from hypothesis_faker import current_countries
 from hypothesis_faker import current_country_codes
+from hypothesis_faker import date_between_dates
+from hypothesis_faker import date_objects
+from hypothesis_faker import date_time
+from hypothesis_faker import date_times_ad
+from hypothesis_faker import date_times_between
+from hypothesis_faker import date_times_between_dates
+from hypothesis_faker import date_times_this_century
+from hypothesis_faker import date_times_this_decade
+from hypothesis_faker import date_times_this_month
+from hypothesis_faker import date_times_this_year
+from hypothesis_faker import dates
+from hypothesis_faker import dates_between
+from hypothesis_faker import dates_of_birth
+from hypothesis_faker import dates_this_century
+from hypothesis_faker import dates_this_decade
+from hypothesis_faker import dates_this_month
+from hypothesis_faker import dates_this_year
+from hypothesis_faker import days_of_month
+from hypothesis_faker import days_of_week
 from hypothesis_faker import dgas
 from hypothesis_faker import domain_names
 from hypothesis_faker import domain_words
@@ -42,6 +80,9 @@ from hypothesis_faker import ean8s
 from hypothesis_faker import ean13s
 from hypothesis_faker import eans
 from hypothesis_faker import emails
+from hypothesis_faker import file_extensions
+from hypothesis_faker import file_names
+from hypothesis_faker import file_paths
 from hypothesis_faker import firefoxes
 from hypothesis_faker import first_name_females
 from hypothesis_faker import first_name_males
@@ -50,6 +91,8 @@ from hypothesis_faker import first_names
 from hypothesis_faker import fixed_widths
 from hypothesis_faker import free_email_domains
 from hypothesis_faker import free_emails
+from hypothesis_faker import future_dates
+from hypothesis_faker import future_datetimes
 from hypothesis_faker import hex_colors
 from hypothesis_faker import hostnames
 from hypothesis_faker import http_methods
@@ -64,6 +107,7 @@ from hypothesis_faker import ipv4_privates
 from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
+from hypothesis_faker import iso8601s
 from hypothesis_faker import jsons
 from hypothesis_faker import language_names
 from hypothesis_faker import last_name_females
@@ -80,6 +124,9 @@ from hypothesis_faker import mac_addresses
 from hypothesis_faker import mac_platform_tokens
 from hypothesis_faker import mac_processors
 from hypothesis_faker import md5s
+from hypothesis_faker import mime_types
+from hypothesis_faker import month_names
+from hypothesis_faker import months
 from hypothesis_faker import name_females
 from hypothesis_faker import name_males
 from hypothesis_faker import name_nonbinaries
@@ -89,13 +136,17 @@ from hypothesis_faker import nic_handles
 from hypothesis_faker import null_booleans
 from hypothesis_faker import operas
 from hypothesis_faker import passwords
+from hypothesis_faker import past_dates
+from hypothesis_faker import past_datetime
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
 from hypothesis_faker import prefix_females
 from hypothesis_faker import prefix_males
 from hypothesis_faker import prefix_nonbinaries
 from hypothesis_faker import prefixes
+from hypothesis_faker import pricetags
 from hypothesis_faker import psvs
+from hypothesis_faker import pytimezones
 from hypothesis_faker import rgb_colors
 from hypothesis_faker import rgb_css_colors
 from hypothesis_faker import ripe_ids
@@ -117,8 +168,16 @@ from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
 from hypothesis_faker import tars
+from hypothesis_faker import time_deltas
+from hypothesis_faker import time_objects
+from hypothesis_faker import time_series
+from hypothesis_faker import times
+from hypothesis_faker import timezones
 from hypothesis_faker import tlds
 from hypothesis_faker import tsvs
+from hypothesis_faker import unix_devices
+from hypothesis_faker import unix_partitions
+from hypothesis_faker import unix_times
 from hypothesis_faker import uri_extensions
 from hypothesis_faker import uri_pages
 from hypothesis_faker import uri_paths
@@ -128,6 +187,7 @@ from hypothesis_faker import user_agents
 from hypothesis_faker import user_names
 from hypothesis_faker import uuid4s
 from hypothesis_faker import windows_platform_tokens
+from hypothesis_faker import years
 from hypothesis_faker import zips
 from tests.utilities import env
 
@@ -173,6 +233,72 @@ from tests.utilities import env
         param(rgb_colors, str),
         param(rgb_css_colors, str),
         param(safe_color_names, str),
+        # company #############################################################
+        param(bss, str),
+        param(catch_phrases, str),
+        param(companies, str),
+        param(company_suffixes, str),
+        # credit card #########################################################
+        param(credit_card_expires, str),
+        param(credit_cards_full, str),
+        param(credit_card_numbers, str),
+        param(credit_card_providers, str),
+        param(credit_card_security_codes, str),
+        # currency ############################################################
+        param(cryptocurrencies, tuple),
+        param(cryptocurrency_codes, str),
+        param(cryptocurrency_names, str),
+        param(currencies, tuple),
+        param(currency_codes, str),
+        param(currency_names, str),
+        param(currency_symbols, str),
+        param(pricetags, str),
+        # date_time ###########################################################
+        param(am_pms, str),
+        param(centuries, str),
+        param(dates, str),
+        param(dates_between, dt.date),
+        param(date_between_dates, dt.date),
+        param(date_objects, dt.date),
+        param(dates_of_birth, dt.date),
+        param(dates_this_century, dt.date),
+        param(dates_this_decade, dt.date),
+        param(dates_this_month, dt.date),
+        param(dates_this_year, dt.date),
+        param(date_time, dt.datetime),
+        param(date_times_ad, dt.datetime),
+        param(date_times_between, dt.datetime),
+        param(date_times_between_dates, dt.datetime),
+        param(date_times_this_century, dt.datetime),
+        param(date_times_this_decade, dt.datetime),
+        param(date_times_this_month, dt.datetime),
+        param(date_times_this_year, dt.datetime),
+        param(days_of_month, str),
+        param(days_of_week, str),
+        param(future_dates, dt.date),
+        param(future_datetimes, dt.datetime),
+        param(iso8601s, str),
+        param(months, str),
+        param(month_names, str),
+        param(past_dates, dt.date),
+        param(past_datetime, dt.datetime),
+        param(
+            pytimezones, (dt.tzinfo, None), marks=mark.xfail(reason="hashing")
+        ),
+        param(times, str),
+        param(time_deltas, dt.timedelta),
+        param(time_objects, dt.time),
+        param(time_series, object, marks=mark.xfail(reason="pickle")),
+        param(timezones, str),
+        param(unix_times, int),
+        param(years, str),
+        # file ################################################################
+        param(file_extensions, str),
+        param(file_names, str),
+        param(file_paths, str),
+        param(mime_types, str),
+        param(unix_devices, str),
+        param(unix_partitions, str),
         # geo #################################################################
         param(coordinates, Decimal),
         # internet ############################################################
@@ -198,11 +324,7 @@ from tests.utilities import env
         param(ipv6s, str),
         param(mac_addresses, str),
         param(nic_handles, str),
-        param(
-            nic_handle_lists,
-            list,
-            marks=mark.xfail(reason="List hashing not sorted yet"),
-        ),
+        param(nic_handle_lists, list, marks=mark.xfail(reason="hashing")),
         param(port_numbers, int),
         param(ripe_ids, str),
         param(safe_domain_names, str),
@@ -231,11 +353,7 @@ from tests.utilities import env
         param(sha256s, (bytes, str)),
         param(tars, bytes),
         param(tsvs, str),
-        param(
-            uuid4s,
-            (bytes, str, UUID),
-            marks=mark.xfail(reason="Callabe is not serializable yet"),
-        ),
+        param(uuid4s, (bytes, str, UUID), marks=mark.xfail(reason="pickle")),
         param(zips, bytes),
         # person ##############################################################
         param(first_names, str),
