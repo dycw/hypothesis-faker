@@ -295,7 +295,7 @@ dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit"]
 
 [[package]]
 name = "flake8-comprehensions"
-version = "3.8.0"
+version = "3.9.0"
 description = "A flake8 plugin to help you write better list/set/dict comprehensions."
 category = "dev"
 optional = false
@@ -332,7 +332,7 @@ flake8 = ">=3.5,<5"
 
 [[package]]
 name = "flake8-no-pep420"
-version = "2.2.0"
+version = "2.3.0"
 description = "A flake8 plugin to ban PEP-420 implicit namespace packages."
 category = "dev"
 optional = false
@@ -425,7 +425,7 @@ typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "hypothesis"
-version = "6.46.2"
+version = "6.46.3"
 description = "A library for property-based testing"
 category = "main"
 optional = false
@@ -984,7 +984,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "f57753acbaa7f91dcbe63edb67c39d3cd32d01d551db907885069f10a5542208"
+content-hash = "82c5500f845ac79ee40544616554d13e61a3578db97bb78d6f186365a5537311"
 
 [metadata.files]
 argcomplete = [
@@ -1147,8 +1147,8 @@ flake8-bugbear = [
     {file = "flake8_bugbear-22.4.25-py3-none-any.whl", hash = "sha256:ec374101cddf65bd7a96d393847d74e58d3b98669dbf9768344c39b6290e8bd6"},
 ]
 flake8-comprehensions = [
-    {file = "flake8-comprehensions-3.8.0.tar.gz", hash = "sha256:8e108707637b1d13734f38e03435984f6b7854fa6b5a4e34f93e69534be8e521"},
-    {file = "flake8_comprehensions-3.8.0-py3-none-any.whl", hash = "sha256:9406314803abe1193c064544ab14fdc43c58424c0882f6ff8a581eb73fc9bb58"},
+    {file = "flake8-comprehensions-3.9.0.tar.gz", hash = "sha256:20c2f6846090e8f265e757f0aa500614c88b0f9ffb0d954d330dcd8abd8f874e"},
+    {file = "flake8_comprehensions-3.9.0-py3-none-any.whl", hash = "sha256:ef3a069809d4eb60805cd9b0ea2aa1aae21b527a460e704c01e0dd3416c99aeb"},
 ]
 flake8-debugger = [
     {file = "flake8-debugger-4.1.2.tar.gz", hash = "sha256:52b002560941e36d9bf806fca2523dc7fb8560a295d5f1a6e15ac2ded7a73840"},
@@ -1159,8 +1159,8 @@ flake8-eradicate = [
     {file = "flake8_eradicate-1.2.1-py3-none-any.whl", hash = "sha256:00d77faefb64cef18b3c1b48a004c3a2ad663aa3cf85650f422437d25ece6441"},
 ]
 flake8-no-pep420 = [
-    {file = "flake8-no-pep420-2.2.0.tar.gz", hash = "sha256:a280a840f84682f683b33b348ad8d3434309b544c142be539f168e13cc16abea"},
-    {file = "flake8_no_pep420-2.2.0-py3-none-any.whl", hash = "sha256:a1622f03be67609b81a9e6790e7e69c310eb6fbd7bb81817f7fb91902312bc76"},
+    {file = "flake8-no-pep420-2.3.0.tar.gz", hash = "sha256:1b965a18508ac7842de288740aa43627d3a5bb2be64f7d5d70d55cb691c3de84"},
+    {file = "flake8_no_pep420-2.3.0-py3-none-any.whl", hash = "sha256:ccba3efa05c50b1c2712d78807cca81e563ab571d6b3bcb90228e87388704cf5"},
 ]
 flake8-pie = [
     {file = "flake8-pie-0.15.0.tar.gz", hash = "sha256:a2d1e67a374d925f688300e9d0e202d1827a0d91e0a11114f712beee639bdc7c"},
@@ -1191,8 +1191,8 @@ gitpython = [
     {file = "GitPython-3.1.27.tar.gz", hash = "sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704"},
 ]
 hypothesis = [
-    {file = "hypothesis-6.46.2-py3-none-any.whl", hash = "sha256:37ca37f61939d0a92c18b5e17ab8088dccc5fc077c913d6619bbe1d233dfca1e"},
-    {file = "hypothesis-6.46.2.tar.gz", hash = "sha256:c671b3801527f3a8189314d9385418a67d4c7ab1b3330a3ff8b267d0d4599b3d"},
+    {file = "hypothesis-6.46.3-py3-none-any.whl", hash = "sha256:022c269158a2db28c40a005fc477f18a1395025dd8b09ce394e49cd0f36c550a"},
+    {file = "hypothesis-6.46.3.tar.gz", hash = "sha256:8d65fcd14634b08f5b2237f66b9cb188df84a81a5cffd3e9748de24baf0fa535"},
 ]
 identify = [
     {file = "identify-2.5.0-py2.py3-none-any.whl", hash = "sha256:3acfe15a96e4272b4ec5662ee3e231ceba976ef63fd9980ed2ce9cc415df393f"},

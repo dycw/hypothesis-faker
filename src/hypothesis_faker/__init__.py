@@ -31,6 +31,10 @@ from hypothesis_faker.strategies import ean13s
 from hypothesis_faker.strategies import eans
 from hypothesis_faker.strategies import emails
 from hypothesis_faker.strategies import firefoxes
+from hypothesis_faker.strategies import first_name_females
+from hypothesis_faker.strategies import first_name_males
+from hypothesis_faker.strategies import first_name_nonbinaries
+from hypothesis_faker.strategies import first_names
 from hypothesis_faker.strategies import fixed_widths
 from hypothesis_faker.strategies import free_email_domains
 from hypothesis_faker.strategies import free_emails
@@ -49,6 +53,11 @@ from hypothesis_faker.strategies import ipv4_publics
 from hypothesis_faker.strategies import ipv4s
 from hypothesis_faker.strategies import ipv6s
 from hypothesis_faker.strategies import jsons
+from hypothesis_faker.strategies import language_names
+from hypothesis_faker.strategies import last_name_females
+from hypothesis_faker.strategies import last_name_males
+from hypothesis_faker.strategies import last_name_nonbinaries
+from hypothesis_faker.strategies import last_names
 from hypothesis_faker.strategies import license_plates
 from hypothesis_faker.strategies import linux_platform_tokens
 from hypothesis_faker.strategies import linux_processors
@@ -59,6 +68,10 @@ from hypothesis_faker.strategies import mac_addresses
 from hypothesis_faker.strategies import mac_platform_tokens
 from hypothesis_faker.strategies import mac_processors
 from hypothesis_faker.strategies import md5s
+from hypothesis_faker.strategies import name_females
+from hypothesis_faker.strategies import name_males
+from hypothesis_faker.strategies import name_nonbinaries
+from hypothesis_faker.strategies import names
 from hypothesis_faker.strategies import nic_handle_lists
 from hypothesis_faker.strategies import nic_handles
 from hypothesis_faker.strategies import null_booleans
@@ -66,6 +79,10 @@ from hypothesis_faker.strategies import operas
 from hypothesis_faker.strategies import passwords
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
+from hypothesis_faker.strategies import prefix_females
+from hypothesis_faker.strategies import prefix_males
+from hypothesis_faker.strategies import prefix_nonbinaries
+from hypothesis_faker.strategies import prefixes
 from hypothesis_faker.strategies import psvs
 from hypothesis_faker.strategies import rgb_colors
 from hypothesis_faker.strategies import rgb_css_colors
@@ -80,6 +97,10 @@ from hypothesis_faker.strategies import slugs
 from hypothesis_faker.strategies import street_addresses
 from hypothesis_faker.strategies import street_names
 from hypothesis_faker.strategies import street_suffixes
+from hypothesis_faker.strategies import suffix_females
+from hypothesis_faker.strategies import suffix_males
+from hypothesis_faker.strategies import suffix_nonbinaries
+from hypothesis_faker.strategies import suffixes
 from hypothesis_faker.strategies import swift8s
 from hypothesis_faker.strategies import swift11s
 from hypothesis_faker.strategies import swifts
@@ -193,6 +214,28 @@ __all__ = [
     "tsvs",
     "uuid4s",
     "zips",
+    # person ##################################################################
+    "first_names",
+    "first_name_females",
+    "first_name_males",
+    "first_name_nonbinaries",
+    "language_names",
+    "last_names",
+    "last_name_females",
+    "last_name_males",
+    "last_name_nonbinaries",
+    "names",
+    "name_females",
+    "name_males",
+    "name_nonbinaries",
+    "prefixes",
+    "prefix_females",
+    "prefix_males",
+    "prefix_nonbinaries",
+    "suffixes",
+    "suffix_females",
+    "suffix_males",
+    "suffix_nonbinaries",
     # user_agent ##############################################################
     "android_platform_tokens",
     "chromes",
@@ -208,4 +251,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.8"
+__version__ = "0.1.9"

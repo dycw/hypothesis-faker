@@ -25,6 +25,8 @@ from hypothesis_faker import building_numbers
 from hypothesis_faker import chromes
 from hypothesis_faker import cities
 from hypothesis_faker import city_suffixes
+from hypothesis_faker import color_names
+from hypothesis_faker import colors
 from hypothesis_faker import company_emails
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
@@ -41,9 +43,14 @@ from hypothesis_faker import ean13s
 from hypothesis_faker import eans
 from hypothesis_faker import emails
 from hypothesis_faker import firefoxes
+from hypothesis_faker import first_name_females
+from hypothesis_faker import first_name_males
+from hypothesis_faker import first_name_nonbinaries
+from hypothesis_faker import first_names
 from hypothesis_faker import fixed_widths
 from hypothesis_faker import free_email_domains
 from hypothesis_faker import free_emails
+from hypothesis_faker import hex_colors
 from hypothesis_faker import hostnames
 from hypothesis_faker import http_methods
 from hypothesis_faker import iana_ids
@@ -58,6 +65,11 @@ from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
 from hypothesis_faker import jsons
+from hypothesis_faker import language_names
+from hypothesis_faker import last_name_females
+from hypothesis_faker import last_name_males
+from hypothesis_faker import last_name_nonbinaries
+from hypothesis_faker import last_names
 from hypothesis_faker import license_plates
 from hypothesis_faker import linux_platform_tokens
 from hypothesis_faker import linux_processors
@@ -68,6 +80,10 @@ from hypothesis_faker import mac_addresses
 from hypothesis_faker import mac_platform_tokens
 from hypothesis_faker import mac_processors
 from hypothesis_faker import md5s
+from hypothesis_faker import name_females
+from hypothesis_faker import name_males
+from hypothesis_faker import name_nonbinaries
+from hypothesis_faker import names
 from hypothesis_faker import nic_handle_lists
 from hypothesis_faker import nic_handles
 from hypothesis_faker import null_booleans
@@ -75,9 +91,16 @@ from hypothesis_faker import operas
 from hypothesis_faker import passwords
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
+from hypothesis_faker import prefix_females
+from hypothesis_faker import prefix_males
+from hypothesis_faker import prefix_nonbinaries
+from hypothesis_faker import prefixes
 from hypothesis_faker import psvs
+from hypothesis_faker import rgb_colors
+from hypothesis_faker import rgb_css_colors
 from hypothesis_faker import ripe_ids
 from hypothesis_faker import safaris
+from hypothesis_faker import safe_color_names
 from hypothesis_faker import safe_domain_names
 from hypothesis_faker import safe_emails
 from hypothesis_faker import sha1s
@@ -86,6 +109,10 @@ from hypothesis_faker import slugs
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
 from hypothesis_faker import street_suffixes
+from hypothesis_faker import suffix_females
+from hypothesis_faker import suffix_males
+from hypothesis_faker import suffix_nonbinaries
+from hypothesis_faker import suffixes
 from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
@@ -102,12 +129,6 @@ from hypothesis_faker import user_names
 from hypothesis_faker import uuid4s
 from hypothesis_faker import windows_platform_tokens
 from hypothesis_faker import zips
-from hypothesis_faker.strategies import color_names
-from hypothesis_faker.strategies import colors
-from hypothesis_faker.strategies import hex_colors
-from hypothesis_faker.strategies import rgb_colors
-from hypothesis_faker.strategies import rgb_css_colors
-from hypothesis_faker.strategies import safe_color_names
 from tests.utilities import env
 
 
@@ -216,6 +237,28 @@ from tests.utilities import env
             marks=mark.xfail(reason="Callabe is not serializable yet"),
         ),
         param(zips, bytes),
+        # person ##############################################################
+        param(first_names, str),
+        param(first_name_females, str),
+        param(first_name_males, str),
+        param(first_name_nonbinaries, str),
+        param(language_names, str),
+        param(last_names, str),
+        param(last_name_females, str),
+        param(last_name_males, str),
+        param(last_name_nonbinaries, str),
+        param(names, str),
+        param(name_females, str),
+        param(name_males, str),
+        param(name_nonbinaries, str),
+        param(prefixes, str),
+        param(prefix_females, str),
+        param(prefix_males, str),
+        param(prefix_nonbinaries, str),
+        param(suffixes, str),
+        param(suffix_females, str),
+        param(suffix_males, str),
+        param(suffix_nonbinaries, str),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),
