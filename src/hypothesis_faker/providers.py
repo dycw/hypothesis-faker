@@ -145,6 +145,29 @@ class Provider(Enum):
     uuid4 = auto()
     zip = auto()
 
+    # person ##################################################################
+    first_name = auto()
+    first_name_female = auto()
+    first_name_male = auto()
+    first_name_nonbinary = auto()
+    language_name = auto()
+    last_name = auto()
+    last_name_female = auto()
+    last_name_male = auto()
+    last_name_nonbinary = auto()
+    name_ = auto()
+    name_female = auto()
+    name_male = auto()
+    name_nonbinary = auto()
+    prefix = auto()
+    prefix_female = auto()
+    prefix_male = auto()
+    prefix_nonbinary = auto()
+    suffix = auto()
+    suffix_female = auto()
+    suffix_male = auto()
+    suffix_nonbinary = auto()
+
     # user_agent ##############################################################
     android_platform_token = auto()
     chrome = auto()
@@ -164,7 +187,11 @@ class Provider(Enum):
 
     @cached_property
     def path(self) -> Path:
-        return get_root().joinpath(self.name)
+        return get_root().joinpath(self._cleaned_name)
+
+    @cached_property
+    def _cleaned_name(self) -> str:
+        return self.name.rstrip("_")
 
     def get_path(self, args_hash: str) -> Path:
         return self.path.joinpath(args_hash)
@@ -188,7 +215,7 @@ class Provider(Enum):
         t, dur, method = (
             default_timer(),
             get_duration(),
-            getattr(_FAKER, self.name),
+            getattr(_FAKER, self._cleaned_name),
         )
         while (len(items) == 0) or (default_timer() - t <= dur):
             items.append(method(*args, **kwargs))

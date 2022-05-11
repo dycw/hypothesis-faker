@@ -555,6 +555,93 @@ def zips(
     )
 
 
+# person ######################################################################
+
+
+def first_names() -> SearchStrategy[str]:
+    return Provider.first_name.get_strategy()
+
+
+def first_name_females() -> SearchStrategy[str]:
+    return Provider.first_name_female.get_strategy()
+
+
+def first_name_males() -> SearchStrategy[str]:
+    return Provider.first_name_male.get_strategy()
+
+
+def first_name_nonbinaries() -> SearchStrategy[str]:
+    return Provider.first_name_nonbinary.get_strategy()
+
+
+def language_names() -> SearchStrategy[str]:
+    return Provider.language_name.get_strategy()
+
+
+def last_names() -> SearchStrategy[str]:
+    return Provider.last_name.get_strategy()
+
+
+def last_name_females() -> SearchStrategy[str]:
+    return Provider.last_name_female.get_strategy()
+
+
+def last_name_males() -> SearchStrategy[str]:
+    return Provider.last_name_male.get_strategy()
+
+
+def last_name_nonbinaries() -> SearchStrategy[str]:
+    return Provider.last_name_nonbinary.get_strategy()
+
+
+def names() -> SearchStrategy[str]:
+    return Provider.name_.get_strategy()
+
+
+def name_females() -> SearchStrategy[str]:
+    return Provider.name_female.get_strategy()
+
+
+def name_males() -> SearchStrategy[str]:
+    return Provider.name_male.get_strategy()
+
+
+def name_nonbinaries() -> SearchStrategy[str]:
+    return Provider.name_nonbinary.get_strategy()
+
+
+def prefixes() -> SearchStrategy[str]:
+    return Provider.prefix.get_strategy()
+
+
+def prefix_females() -> SearchStrategy[str]:
+    return Provider.prefix_female.get_strategy()
+
+
+def prefix_males() -> SearchStrategy[str]:
+    return Provider.prefix_male.get_strategy()
+
+
+def prefix_nonbinaries() -> SearchStrategy[str]:
+    return Provider.prefix_nonbinary.get_strategy()
+
+
+def suffixes() -> SearchStrategy[str]:
+    return Provider.suffix.get_strategy()
+
+
+def suffix_females() -> SearchStrategy[str]:
+    return Provider.suffix_female.get_strategy()
+
+
+def suffix_males() -> SearchStrategy[str]:
+    return Provider.suffix_male.get_strategy()
+
+
+def suffix_nonbinaries() -> SearchStrategy[str]:
+    return Provider.suffix_nonbinary.get_strategy()
+
+
 # user_agent ##################################################################
 
 
