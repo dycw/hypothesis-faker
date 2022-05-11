@@ -1,5 +1,6 @@
 from hypothesis_faker.strategies import abas
 from hypothesis_faker.strategies import addresses
+from hypothesis_faker.strategies import am_pms
 from hypothesis_faker.strategies import android_platform_tokens
 from hypothesis_faker.strategies import ascii_company_emails
 from hypothesis_faker.strategies import ascii_emails
@@ -9,19 +10,55 @@ from hypothesis_faker.strategies import bank_countries
 from hypothesis_faker.strategies import bbans
 from hypothesis_faker.strategies import binaries
 from hypothesis_faker.strategies import booleans
+from hypothesis_faker.strategies import bss
 from hypothesis_faker.strategies import building_numbers
+from hypothesis_faker.strategies import catch_phrases
+from hypothesis_faker.strategies import centuries
 from hypothesis_faker.strategies import chromes
 from hypothesis_faker.strategies import cities
 from hypothesis_faker.strategies import city_suffixes
 from hypothesis_faker.strategies import color_names
 from hypothesis_faker.strategies import colors
+from hypothesis_faker.strategies import companies
 from hypothesis_faker.strategies import company_emails
+from hypothesis_faker.strategies import company_suffixes
 from hypothesis_faker.strategies import coordinates
 from hypothesis_faker.strategies import countries
 from hypothesis_faker.strategies import country_codes
+from hypothesis_faker.strategies import credit_card_expires
+from hypothesis_faker.strategies import credit_card_numbers
+from hypothesis_faker.strategies import credit_card_providers
+from hypothesis_faker.strategies import credit_card_security_codes
+from hypothesis_faker.strategies import credit_cards_full
+from hypothesis_faker.strategies import cryptocurrencies
+from hypothesis_faker.strategies import cryptocurrency_codes
+from hypothesis_faker.strategies import cryptocurrency_names
 from hypothesis_faker.strategies import csvs
+from hypothesis_faker.strategies import currencies
+from hypothesis_faker.strategies import currency_codes
+from hypothesis_faker.strategies import currency_names
+from hypothesis_faker.strategies import currency_symbols
 from hypothesis_faker.strategies import current_countries
 from hypothesis_faker.strategies import current_country_codes
+from hypothesis_faker.strategies import date_between_dates
+from hypothesis_faker.strategies import date_objects
+from hypothesis_faker.strategies import date_time
+from hypothesis_faker.strategies import date_times_ad
+from hypothesis_faker.strategies import date_times_between
+from hypothesis_faker.strategies import date_times_between_dates
+from hypothesis_faker.strategies import date_times_this_century
+from hypothesis_faker.strategies import date_times_this_decade
+from hypothesis_faker.strategies import date_times_this_month
+from hypothesis_faker.strategies import date_times_this_year
+from hypothesis_faker.strategies import dates
+from hypothesis_faker.strategies import dates_between
+from hypothesis_faker.strategies import dates_of_birth
+from hypothesis_faker.strategies import dates_this_century
+from hypothesis_faker.strategies import dates_this_decade
+from hypothesis_faker.strategies import dates_this_month
+from hypothesis_faker.strategies import dates_this_year
+from hypothesis_faker.strategies import days_of_month
+from hypothesis_faker.strategies import days_of_week
 from hypothesis_faker.strategies import dgas
 from hypothesis_faker.strategies import domain_names
 from hypothesis_faker.strategies import domain_words
@@ -30,6 +67,9 @@ from hypothesis_faker.strategies import ean8s
 from hypothesis_faker.strategies import ean13s
 from hypothesis_faker.strategies import eans
 from hypothesis_faker.strategies import emails
+from hypothesis_faker.strategies import file_extensions
+from hypothesis_faker.strategies import file_names
+from hypothesis_faker.strategies import file_paths
 from hypothesis_faker.strategies import firefoxes
 from hypothesis_faker.strategies import first_name_females
 from hypothesis_faker.strategies import first_name_males
@@ -38,6 +78,8 @@ from hypothesis_faker.strategies import first_names
 from hypothesis_faker.strategies import fixed_widths
 from hypothesis_faker.strategies import free_email_domains
 from hypothesis_faker.strategies import free_emails
+from hypothesis_faker.strategies import future_dates
+from hypothesis_faker.strategies import future_datetimes
 from hypothesis_faker.strategies import hex_colors
 from hypothesis_faker.strategies import hostnames
 from hypothesis_faker.strategies import http_methods
@@ -52,6 +94,7 @@ from hypothesis_faker.strategies import ipv4_privates
 from hypothesis_faker.strategies import ipv4_publics
 from hypothesis_faker.strategies import ipv4s
 from hypothesis_faker.strategies import ipv6s
+from hypothesis_faker.strategies import iso8601s
 from hypothesis_faker.strategies import jsons
 from hypothesis_faker.strategies import language_names
 from hypothesis_faker.strategies import last_name_females
@@ -68,6 +111,9 @@ from hypothesis_faker.strategies import mac_addresses
 from hypothesis_faker.strategies import mac_platform_tokens
 from hypothesis_faker.strategies import mac_processors
 from hypothesis_faker.strategies import md5s
+from hypothesis_faker.strategies import mime_types
+from hypothesis_faker.strategies import month_names
+from hypothesis_faker.strategies import months
 from hypothesis_faker.strategies import name_females
 from hypothesis_faker.strategies import name_males
 from hypothesis_faker.strategies import name_nonbinaries
@@ -77,13 +123,17 @@ from hypothesis_faker.strategies import nic_handles
 from hypothesis_faker.strategies import null_booleans
 from hypothesis_faker.strategies import operas
 from hypothesis_faker.strategies import passwords
+from hypothesis_faker.strategies import past_dates
+from hypothesis_faker.strategies import past_datetime
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
 from hypothesis_faker.strategies import prefix_females
 from hypothesis_faker.strategies import prefix_males
 from hypothesis_faker.strategies import prefix_nonbinaries
 from hypothesis_faker.strategies import prefixes
+from hypothesis_faker.strategies import pricetags
 from hypothesis_faker.strategies import psvs
+from hypothesis_faker.strategies import pytimezones
 from hypothesis_faker.strategies import rgb_colors
 from hypothesis_faker.strategies import rgb_css_colors
 from hypothesis_faker.strategies import ripe_ids
@@ -105,8 +155,16 @@ from hypothesis_faker.strategies import swift8s
 from hypothesis_faker.strategies import swift11s
 from hypothesis_faker.strategies import swifts
 from hypothesis_faker.strategies import tars
+from hypothesis_faker.strategies import time_deltas
+from hypothesis_faker.strategies import time_objects
+from hypothesis_faker.strategies import time_series
+from hypothesis_faker.strategies import times
+from hypothesis_faker.strategies import timezones
 from hypothesis_faker.strategies import tlds
 from hypothesis_faker.strategies import tsvs
+from hypothesis_faker.strategies import unix_devices
+from hypothesis_faker.strategies import unix_partitions
+from hypothesis_faker.strategies import unix_times
 from hypothesis_faker.strategies import uri_extensions
 from hypothesis_faker.strategies import uri_pages
 from hypothesis_faker.strategies import uri_paths
@@ -116,6 +174,7 @@ from hypothesis_faker.strategies import user_agents
 from hypothesis_faker.strategies import user_names
 from hypothesis_faker.strategies import uuid4s
 from hypothesis_faker.strategies import windows_platform_tokens
+from hypothesis_faker.strategies import years
 from hypothesis_faker.strategies import zips
 
 
@@ -158,6 +217,70 @@ __all__ = [
     "rgb_colors",
     "rgb_css_colors",
     "safe_color_names",
+    # company #################################################################
+    "bss",
+    "catch_phrases",
+    "companies",
+    "company_suffixes",
+    # credit card #############################################################
+    "credit_card_expires",
+    "credit_cards_full",
+    "credit_card_numbers",
+    "credit_card_providers",
+    "credit_card_security_codes",
+    # currency ################################################################
+    "cryptocurrencies",
+    "cryptocurrency_codes",
+    "cryptocurrency_names",
+    "currencies",
+    "currency_codes",
+    "currency_names",
+    "currency_symbols",
+    "pricetags",
+    # date_time ###############################################################
+    "am_pms",
+    "centuries",
+    "dates",
+    "dates_between",
+    "date_between_dates",
+    "date_objects",
+    "dates_of_birth",
+    "dates_this_century",
+    "dates_this_decade",
+    "dates_this_month",
+    "dates_this_year",
+    "date_time",
+    "date_times_ad",
+    "date_times_between",
+    "date_times_between_dates",
+    "date_times_this_century",
+    "date_times_this_decade",
+    "date_times_this_month",
+    "date_times_this_year",
+    "days_of_month",
+    "days_of_week",
+    "future_dates",
+    "future_datetimes",
+    "iso8601s",
+    "months",
+    "month_names",
+    "past_dates",
+    "past_datetime",
+    "pytimezones",
+    "times",
+    "time_deltas",
+    "time_objects",
+    "time_series",
+    "timezones",
+    "unix_times",
+    "years",
+    # file ####################################################################
+    "file_extensions",
+    "file_names",
+    "file_paths",
+    "mime_types",
+    "unix_devices",
+    "unix_partitions",
     # geo #####################################################################
     "coordinates",
     # internet ################################################################
@@ -251,4 +374,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.9"
+__version__ = "0.1.10"

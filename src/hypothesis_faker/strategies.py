@@ -1,6 +1,8 @@
+import datetime as dt
 from decimal import Decimal
 from typing import Any
 from typing import Callable
+from typing import Iterator
 from typing import List
 from typing import Optional
 from typing import Sequence
@@ -8,6 +10,7 @@ from typing import Tuple
 from typing import Union
 from uuid import UUID
 
+from faker.providers.credit_card import CardType
 from faker.typing import HueType
 from hypothesis.strategies import SearchStrategy
 
@@ -179,6 +182,466 @@ def rgb_css_colors() -> SearchStrategy[str]:
 
 def safe_color_names() -> SearchStrategy[str]:
     return Provider.safe_color_name.get_strategy()
+
+
+# company #################################################################
+
+
+def bss() -> SearchStrategy[str]:
+    return Provider.bs.get_strategy()
+
+
+def catch_phrases() -> SearchStrategy[str]:
+    return Provider.catch_phrase.get_strategy()
+
+
+def companies() -> SearchStrategy[str]:
+    return Provider.company.get_strategy()
+
+
+def company_suffixes() -> SearchStrategy[str]:
+    return Provider.company_suffix.get_strategy()
+
+
+# credit card #############################################################
+
+
+def credit_card_expires(
+    *,
+    start: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "now",
+    end: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "+10y",
+    date_format: str = "%m/%y",
+) -> SearchStrategy[str]:
+    return Provider.credit_card_expire.get_strategy(
+        start=start, end=end, date_format=date_format
+    )
+
+
+def credit_cards_full(
+    *, card_type: Optional[CardType] = None
+) -> SearchStrategy[str]:
+    return Provider.credit_card_full.get_strategy(card_type=card_type)
+
+
+def credit_card_numbers(
+    *, card_type: Optional[CardType] = None
+) -> SearchStrategy[str]:
+    return Provider.credit_card_number.get_strategy(card_type=card_type)
+
+
+def credit_card_providers(
+    *, card_type: Optional[CardType] = None
+) -> SearchStrategy[str]:
+    return Provider.credit_card_provider.get_strategy(card_type=card_type)
+
+
+def credit_card_security_codes(
+    *, card_type: Optional[CardType] = None
+) -> SearchStrategy[str]:
+    return Provider.credit_card_security_code.get_strategy(card_type=card_type)
+
+
+# currency ################################################################
+
+
+def cryptocurrencies() -> SearchStrategy[Tuple[str, str]]:
+    return Provider.cryptocurrency.get_strategy()
+
+
+def cryptocurrency_codes() -> SearchStrategy[str]:
+    return Provider.cryptocurrency_code.get_strategy()
+
+
+def cryptocurrency_names() -> SearchStrategy[str]:
+    return Provider.cryptocurrency_name.get_strategy()
+
+
+def currencies() -> SearchStrategy[str]:
+    return Provider.currency.get_strategy()
+
+
+def currency_codes() -> SearchStrategy[str]:
+    return Provider.currency_code.get_strategy()
+
+
+def currency_names() -> SearchStrategy[str]:
+    return Provider.currency_name.get_strategy()
+
+
+def currency_symbols(*, code: Optional[str] = None) -> SearchStrategy[str]:
+    return Provider.currency_symbol.get_strategy(code=code)
+
+
+def pricetags() -> SearchStrategy[str]:
+    return Provider.pricetag.get_strategy()
+
+
+# date_time ###############################################################
+
+
+def am_pms() -> SearchStrategy[str]:
+    return Provider.am_pm.get_strategy()
+
+
+def centuries() -> SearchStrategy[str]:
+    return Provider.century.get_strategy()
+
+
+def dates(
+    *,
+    pattern: str = "%Y-%m-%d",
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[str]:
+    return Provider.date.get_strategy(
+        pattern=pattern, end_datetime=end_datetime
+    )
+
+
+def dates_between(
+    *,
+    start_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "-30y",
+    end_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "today",
+) -> SearchStrategy[dt.date]:
+    return Provider.date_between.get_strategy(
+        start_date=start_date, end_date=end_date
+    )
+
+
+def date_between_dates(
+    *,
+    date_start: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+    date_end: Union[dt.date, dt.datetime, dt.timedelta, str, int, None] = None,
+) -> SearchStrategy[dt.date]:
+    return Provider.date_between_dates.get_strategy(
+        date_start=date_start, date_end=date_end
+    )
+
+
+def date_objects(
+    *, end_datetime: Optional[dt.datetime] = None
+) -> SearchStrategy[dt.date]:
+    return Provider.date_object.get_strategy(end_datetime=end_datetime)
+
+
+def dates_of_birth(
+    *,
+    tzinfo: Optional[dt.tzinfo] = None,
+    minimum_age: int = 0,
+    maximum_age: int = 115,
+) -> SearchStrategy[dt.date]:
+    return Provider.date_of_birth.get_strategy(
+        tzinfo=tzinfo, minimum_age=minimum_age, maximum_age=maximum_age
+    )
+
+
+def dates_this_century(
+    *, before_today: bool = True, after_today: bool = False
+) -> SearchStrategy[dt.date]:
+    return Provider.date_this_century.get_strategy(
+        before_today=before_today, after_today=after_today
+    )
+
+
+def dates_this_decade(
+    *, before_today: bool = True, after_today: bool = False
+) -> SearchStrategy[dt.date]:
+    return Provider.date_this_decade.get_strategy(
+        before_today=before_today, after_today=after_today
+    )
+
+
+def dates_this_month(
+    *, before_today: bool = True, after_today: bool = False
+) -> SearchStrategy[dt.date]:
+    return Provider.date_this_month.get_strategy(
+        before_today=before_today, after_today=after_today
+    )
+
+
+def dates_this_year(
+    *, before_today: bool = True, after_today: bool = False
+) -> SearchStrategy[dt.date]:
+    return Provider.date_this_year.get_strategy(
+        before_today=before_today, after_today=after_today
+    )
+
+
+def date_time(
+    *,
+    tzinfo: Optional[dt.tzinfo] = None,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time.get_strategy(
+        tzinfo=tzinfo, end_datetime=end_datetime
+    )
+
+
+def date_times_ad(
+    *,
+    tzinfo: Optional[dt.tzinfo] = None,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+    start_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_ad.get_strategy(
+        tzinfo=tzinfo, end_datetime=end_datetime, start_datetime=start_datetime
+    )
+
+
+def date_times_between(
+    *,
+    start_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "-30y",
+    end_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "now",
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_between.get_strategy(
+        start_date=start_date, end_date=end_date, tzinfo=tzinfo
+    )
+
+
+def date_times_between_dates(
+    *,
+    datetime_start: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+    datetime_end: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_between_dates.get_strategy(
+        datetime_start=datetime_start, datetime_end=datetime_end, tzinfo=tzinfo
+    )
+
+
+def date_times_this_century(
+    *,
+    before_now: bool = True,
+    after_now: bool = False,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_this_century.get_strategy(
+        before_now=before_now, after_now=after_now, tzinfo=tzinfo
+    )
+
+
+def date_times_this_decade(
+    *,
+    before_now: bool = True,
+    after_now: bool = False,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_this_decade.get_strategy(
+        before_now=before_now, after_now=after_now, tzinfo=tzinfo
+    )
+
+
+def date_times_this_month(
+    *,
+    before_now: bool = True,
+    after_now: bool = False,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_this_month.get_strategy(
+        before_now=before_now, after_now=after_now, tzinfo=tzinfo
+    )
+
+
+def date_times_this_year(
+    *,
+    before_now: bool = True,
+    after_now: bool = False,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.date_time_this_year.get_strategy(
+        before_now=before_now, after_now=after_now, tzinfo=tzinfo
+    )
+
+
+def days_of_month() -> SearchStrategy[str]:
+    return Provider.day_of_month.get_strategy()
+
+
+def days_of_week() -> SearchStrategy[str]:
+    return Provider.day_of_week.get_strategy()
+
+
+def future_dates(
+    *,
+    end_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "+30d",
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.date]:
+    return Provider.future_date.get_strategy(end_date=end_date, tzinfo=tzinfo)
+
+
+def future_datetimes(
+    *,
+    end_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "+30d",
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.future_datetime.get_strategy(
+        end_date=end_date, tzinfo=tzinfo
+    )
+
+
+def iso8601s(
+    *,
+    tzinfo: Optional[dt.tzinfo] = None,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[str]:
+    return Provider.iso8601.get_strategy(
+        tzinfo=tzinfo, end_datetime=end_datetime
+    )
+
+
+def months() -> SearchStrategy[str]:
+    return Provider.month.get_strategy()
+
+
+def month_names() -> SearchStrategy[str]:
+    return Provider.month_name.get_strategy()
+
+
+def past_dates(
+    *,
+    start_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "-30d",
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.date]:
+    return Provider.past_date.get_strategy(start_date=start_date, tzinfo=tzinfo)
+
+
+def past_datetime(
+    *,
+    start_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "-30d",
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[dt.datetime]:
+    return Provider.past_datetime.get_strategy(
+        start_date=start_date, tzinfo=tzinfo
+    )
+
+
+def pytimezones(
+    *args: Any, **kwargs: Any
+) -> SearchStrategy[Optional[dt.tzinfo]]:
+    return Provider.pytimezone.get_strategy(*args, **kwargs)
+
+
+def times(
+    *,
+    pattern: str = "%H:%M:%S",
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[str]:
+    return Provider.time.get_strategy(
+        pattern=pattern, end_datetime=end_datetime
+    )
+
+
+def time_deltas(
+    *,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[dt.timedelta]:
+    return Provider.time_delta.get_strategy(end_datetime=end_datetime)
+
+
+def time_objects(
+    *,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[dt.time]:
+    return Provider.time_object.get_strategy(end_datetime=end_datetime)
+
+
+def time_series(
+    *,
+    start_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "-30d",
+    end_date: Union[dt.date, dt.datetime, dt.timedelta, str, int] = "now",
+    precision: Optional[float] = None,
+    distrib: Optional[Callable[[dt.datetime], float]] = None,
+    tzinfo: Optional[dt.tzinfo] = None,
+) -> SearchStrategy[Iterator[Tuple[dt.datetime, Any]]]:
+    return Provider.time_series.get_strategy(
+        start_date=start_date,
+        end_date=end_date,
+        precision=precision,
+        distrib=distrib,
+        tzinfo=tzinfo,
+    )
+
+
+def timezones() -> SearchStrategy[str]:
+    return Provider.timezone.get_strategy()
+
+
+def unix_times(
+    *,
+    end_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+    start_datetime: Union[
+        dt.date, dt.datetime, dt.timedelta, str, int, None
+    ] = None,
+) -> SearchStrategy[int]:
+    return Provider.unix_time.get_strategy(
+        end_datetime=end_datetime, start_datetime=start_datetime
+    )
+
+
+def years() -> SearchStrategy[str]:
+    return Provider.year.get_strategy()
+
+
+# file ####################################################################
+
+
+def file_extensions(*, category: Optional[str] = None) -> SearchStrategy[str]:
+    return Provider.file_extension.get_strategy(category=category)
+
+
+def file_names(
+    *, category: Optional[str] = None, extension: Optional[str] = None
+) -> SearchStrategy[str]:
+    return Provider.file_name.get_strategy(
+        category=category, extension=extension
+    )
+
+
+def file_paths(
+    *,
+    depth: int = 1,
+    category: Optional[str] = None,
+    extension: Optional[str] = None,
+) -> SearchStrategy[str]:
+    return Provider.file_path.get_strategy(
+        depth=depth, category=category, extension=extension
+    )
+
+
+def mime_types(*, category: Optional[str] = None) -> SearchStrategy[str]:
+    return Provider.mime_type.get_strategy(category=category)
+
+
+def unix_devices(*, prefix: Optional[str] = None) -> SearchStrategy[str]:
+    return Provider.unix_device.get_strategy(prefix=prefix)
+
+
+def unix_partitions(*, prefix: Optional[str] = None) -> SearchStrategy[str]:
+    return Provider.unix_partition.get_strategy(prefix=prefix)
 
 
 # geo #########################################################################
