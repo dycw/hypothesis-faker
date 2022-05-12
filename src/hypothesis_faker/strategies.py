@@ -846,6 +846,13 @@ def isbn13s(*, separator: str = "-") -> SearchStrategy[str]:
     return Provider.isbn13.get_strategy(separator=separator)
 
 
+# job #########################################################################
+
+
+def jobs() -> SearchStrategy[str]:
+    return Provider.job.get_strategy()
+
+
 # misc ########################################################################
 
 

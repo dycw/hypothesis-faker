@@ -97,6 +97,7 @@ from hypothesis_faker.strategies import ipv6s
 from hypothesis_faker.strategies import isbn10s
 from hypothesis_faker.strategies import isbn13s
 from hypothesis_faker.strategies import iso8601s
+from hypothesis_faker.strategies import jobs
 from hypothesis_faker.strategies import jsons
 from hypothesis_faker.strategies import language_names
 from hypothesis_faker.strategies import last_name_females
@@ -324,6 +325,8 @@ __all__ = [
     # isbn ####################################################################
     "isbn10s",
     "isbn13s",
+    # job #####################################################################
+    "jobs",
     # misc ####################################################################
     "binaries",
     "booleans",
