@@ -853,6 +853,93 @@ def jobs() -> SearchStrategy[str]:
     return Provider.job.get_strategy()
 
 
+# lorem #######################################################################
+
+
+def paragraphs(
+    *,
+    nb_sentences: int = 3,
+    variable_nb_sentences: bool = True,
+    ext_word_list: Optional[Sequence[str]] = None,
+) -> SearchStrategy[str]:
+    return Provider.paragraph.get_strategy(
+        nb_sentences=nb_sentences,
+        variable_nb_sentences=variable_nb_sentences,
+        ext_word_list=ext_word_list,
+    )
+
+
+def paragraph_lists(
+    *, nb: int = 3, ext_word_list: Optional[Sequence[str]] = None
+) -> SearchStrategy[List[str]]:
+    return Provider.paragraphs.get_strategy(nb=nb, ext_word_list=ext_word_list)
+
+
+def sentences(
+    *,
+    nb_words: int = 6,
+    variable_nb_words: bool = True,
+    ext_word_list: Optional[Sequence[str]] = None,
+) -> SearchStrategy[str]:
+    return Provider.sentence.get_strategy(
+        nb_words=nb_words,
+        variable_nb_words=variable_nb_words,
+        ext_word_list=ext_word_list,
+    )
+
+
+def sentence_lists(
+    *, nb: int = 3, ext_word_list: Optional[Sequence[str]] = None
+) -> SearchStrategy[List[str]]:
+    return Provider.sentences.get_strategy(nb=nb, ext_word_list=ext_word_list)
+
+
+def texts(
+    *, max_nb_chars: int = 200, ext_word_list: Optional[Sequence[str]] = None
+) -> SearchStrategy[str]:
+    return Provider.text.get_strategy(
+        max_nb_chars=max_nb_chars, ext_word_list=ext_word_list
+    )
+
+
+def text_lists(
+    *,
+    nb_texts: int = 3,
+    max_nb_chars: int = 200,
+    ext_word_list: Optional[Sequence[str]] = None,
+) -> SearchStrategy[List[str]]:
+    return Provider.texts.get_strategy(
+        nb_texts=nb_texts,
+        max_nb_chars=max_nb_chars,
+        ext_word_list=ext_word_list,
+    )
+
+
+def words(
+    *,
+    part_of_speech: Optional[str] = None,
+    ext_word_list: Optional[Sequence[str]] = None,
+) -> SearchStrategy[str]:
+    return Provider.word.get_strategy(
+        part_of_speech=part_of_speech, ext_word_list=ext_word_list
+    )
+
+
+def word_lists(
+    *,
+    nb: int = 3,
+    part_of_speech: Optional[str] = None,
+    ext_word_list: Optional[Sequence[str]] = None,
+    unique: bool = False,
+) -> SearchStrategy[List[str]]:
+    return Provider.words.get_strategy(
+        nb=nb,
+        part_of_speech=part_of_speech,
+        ext_word_list=ext_word_list,
+        unique=unique,
+    )
+
+
 # misc ########################################################################
 
 

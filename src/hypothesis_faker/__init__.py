@@ -125,6 +125,8 @@ from hypothesis_faker.strategies import nic_handle_lists
 from hypothesis_faker.strategies import nic_handles
 from hypothesis_faker.strategies import null_booleans
 from hypothesis_faker.strategies import operas
+from hypothesis_faker.strategies import paragraph_lists
+from hypothesis_faker.strategies import paragraphs
 from hypothesis_faker.strategies import passwords
 from hypothesis_faker.strategies import past_dates
 from hypothesis_faker.strategies import past_datetime
@@ -144,6 +146,8 @@ from hypothesis_faker.strategies import safaris
 from hypothesis_faker.strategies import safe_color_names
 from hypothesis_faker.strategies import safe_domain_names
 from hypothesis_faker.strategies import safe_emails
+from hypothesis_faker.strategies import sentence_lists
+from hypothesis_faker.strategies import sentences
 from hypothesis_faker.strategies import sha1s
 from hypothesis_faker.strategies import sha256s
 from hypothesis_faker.strategies import slugs
@@ -158,6 +162,8 @@ from hypothesis_faker.strategies import swift8s
 from hypothesis_faker.strategies import swift11s
 from hypothesis_faker.strategies import swifts
 from hypothesis_faker.strategies import tars
+from hypothesis_faker.strategies import text_lists
+from hypothesis_faker.strategies import texts
 from hypothesis_faker.strategies import time_deltas
 from hypothesis_faker.strategies import time_objects
 from hypothesis_faker.strategies import time_series
@@ -177,6 +183,8 @@ from hypothesis_faker.strategies import user_agents
 from hypothesis_faker.strategies import user_names
 from hypothesis_faker.strategies import uuid4s
 from hypothesis_faker.strategies import windows_platform_tokens
+from hypothesis_faker.strategies import word_lists
+from hypothesis_faker.strategies import words
 from hypothesis_faker.strategies import years
 from hypothesis_faker.strategies import zips
 
@@ -327,6 +335,15 @@ __all__ = [
     "isbn13s",
     # job #####################################################################
     "jobs",
+    # lorem ###################################################################
+    "paragraphs",
+    "paragraph_lists",
+    "sentences",
+    "sentence_lists",
+    "texts",
+    "text_lists",
+    "words",
+    "word_lists",
     # misc ####################################################################
     "binaries",
     "booleans",

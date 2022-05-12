@@ -138,6 +138,8 @@ from hypothesis_faker import nic_handle_lists
 from hypothesis_faker import nic_handles
 from hypothesis_faker import null_booleans
 from hypothesis_faker import operas
+from hypothesis_faker import paragraph_lists
+from hypothesis_faker import paragraphs
 from hypothesis_faker import passwords
 from hypothesis_faker import past_dates
 from hypothesis_faker import past_datetime
@@ -157,6 +159,8 @@ from hypothesis_faker import safaris
 from hypothesis_faker import safe_color_names
 from hypothesis_faker import safe_domain_names
 from hypothesis_faker import safe_emails
+from hypothesis_faker import sentence_lists
+from hypothesis_faker import sentences
 from hypothesis_faker import sha1s
 from hypothesis_faker import sha256s
 from hypothesis_faker import slugs
@@ -171,6 +175,8 @@ from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
 from hypothesis_faker import tars
+from hypothesis_faker import text_lists
+from hypothesis_faker import texts
 from hypothesis_faker import time_deltas
 from hypothesis_faker import time_objects
 from hypothesis_faker import time_series
@@ -190,6 +196,8 @@ from hypothesis_faker import user_agents
 from hypothesis_faker import user_names
 from hypothesis_faker import uuid4s
 from hypothesis_faker import windows_platform_tokens
+from hypothesis_faker import word_lists
+from hypothesis_faker import words
 from hypothesis_faker import years
 from hypothesis_faker import zips
 from tests.utilities import env
@@ -345,6 +353,15 @@ from tests.utilities import env
         param(isbn13s, str),
         # job #################################################################
         param(jobs, str),
+        # lorem ###############################################################
+        param(paragraphs, str),
+        param(paragraph_lists, list, marks=mark.xfail(reason="hashing")),
+        param(sentences, str),
+        param(sentence_lists, list, marks=mark.xfail(reason="hashing")),
+        param(texts, str),
+        param(text_lists, list, marks=mark.xfail(reason="hashing")),
+        param(words, str),
+        param(word_lists, list, marks=mark.xfail(reason="hashing")),
         # misc ################################################################
         param(binaries, bytes),
         param(booleans, bool),

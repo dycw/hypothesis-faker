@@ -202,6 +202,16 @@ class Provider(Enum):
     # job #####################################################################
     job = auto()
 
+    # lorem ###################################################################
+    paragraph = auto()
+    paragraphs = auto()
+    sentence = auto()
+    sentences = auto()
+    text = auto()
+    texts = auto()
+    word = auto()
+    words = auto()
+
     # misc ####################################################################
     binary = auto()
     boolean = auto()
