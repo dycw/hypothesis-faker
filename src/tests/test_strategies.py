@@ -37,6 +37,7 @@ from hypothesis_faker import company_emails
 from hypothesis_faker import company_suffixes
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
+from hypothesis_faker import country_calling_codes
 from hypothesis_faker import country_codes
 from hypothesis_faker import credit_card_expires
 from hypothesis_faker import credit_card_numbers
@@ -130,6 +131,7 @@ from hypothesis_faker import md5s
 from hypothesis_faker import mime_types
 from hypothesis_faker import month_names
 from hypothesis_faker import months
+from hypothesis_faker import msisdns
 from hypothesis_faker import name_females
 from hypothesis_faker import name_males
 from hypothesis_faker import name_nonbinaries
@@ -143,6 +145,7 @@ from hypothesis_faker import paragraphs
 from hypothesis_faker import passwords
 from hypothesis_faker import past_dates
 from hypothesis_faker import past_datetime
+from hypothesis_faker import phone_numbers
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
 from hypothesis_faker import prefix_females
@@ -402,6 +405,10 @@ from tests.utilities import env
         param(suffix_females, str),
         param(suffix_males, str),
         param(suffix_nonbinaries, str),
+        # phone_number ########################################################
+        param(country_calling_codes, str),
+        param(msisdns, str),
+        param(phone_numbers, str),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),

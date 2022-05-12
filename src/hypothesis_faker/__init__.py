@@ -24,6 +24,7 @@ from hypothesis_faker.strategies import company_emails
 from hypothesis_faker.strategies import company_suffixes
 from hypothesis_faker.strategies import coordinates
 from hypothesis_faker.strategies import countries
+from hypothesis_faker.strategies import country_calling_codes
 from hypothesis_faker.strategies import country_codes
 from hypothesis_faker.strategies import credit_card_expires
 from hypothesis_faker.strategies import credit_card_numbers
@@ -117,6 +118,7 @@ from hypothesis_faker.strategies import md5s
 from hypothesis_faker.strategies import mime_types
 from hypothesis_faker.strategies import month_names
 from hypothesis_faker.strategies import months
+from hypothesis_faker.strategies import msisdns
 from hypothesis_faker.strategies import name_females
 from hypothesis_faker.strategies import name_males
 from hypothesis_faker.strategies import name_nonbinaries
@@ -130,6 +132,7 @@ from hypothesis_faker.strategies import paragraphs
 from hypothesis_faker.strategies import passwords
 from hypothesis_faker.strategies import past_dates
 from hypothesis_faker.strategies import past_datetime
+from hypothesis_faker.strategies import phone_numbers
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
 from hypothesis_faker.strategies import prefix_females
@@ -384,6 +387,10 @@ __all__ = [
     "suffix_females",
     "suffix_males",
     "suffix_nonbinaries",
+    # phone_number ############################################################
+    "country_calling_codes",
+    "msisdns",
+    "phone_numbers",
     # user_agent ##############################################################
     "android_platform_tokens",
     "chromes",

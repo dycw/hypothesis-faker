@@ -1210,6 +1210,21 @@ def suffix_nonbinaries() -> SearchStrategy[str]:
     return Provider.suffix_nonbinary.get_strategy()
 
 
+# phone_number ################################################################
+
+
+def country_calling_codes() -> SearchStrategy[str]:
+    return Provider.country_calling_code.get_strategy()
+
+
+def msisdns() -> SearchStrategy[str]:
+    return Provider.msisdn.get_strategy()
+
+
+def phone_numbers() -> SearchStrategy[str]:
+    return Provider.phone_number.get_strategy()
+
+
 # user_agent ##################################################################
 
 

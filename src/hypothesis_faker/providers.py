@@ -254,6 +254,11 @@ class Provider(Enum):
     suffix_male = auto()
     suffix_nonbinary = auto()
 
+    # phone_number ############################################################
+    country_calling_code = auto()
+    msisdn = auto()
+    phone_number = auto()
+
     # user_agent ##############################################################
     android_platform_token = auto()
     chrome = auto()
