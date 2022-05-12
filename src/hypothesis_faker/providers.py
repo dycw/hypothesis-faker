@@ -195,6 +195,23 @@ class Provider(Enum):
     url = auto()
     user_name = auto()
 
+    # isbn ####################################################################
+    isbn10 = auto()
+    isbn13 = auto()
+
+    # job #####################################################################
+    job = auto()
+
+    # lorem ###################################################################
+    paragraph = auto()
+    paragraphs = auto()
+    sentence = auto()
+    sentences = auto()
+    text = auto()
+    texts = auto()
+    word = auto()
+    words = auto()
+
     # misc ####################################################################
     binary = auto()
     boolean = auto()
@@ -236,6 +253,15 @@ class Provider(Enum):
     suffix_female = auto()
     suffix_male = auto()
     suffix_nonbinary = auto()
+
+    # phone_number ############################################################
+    country_calling_code = auto()
+    msisdn = auto()
+    phone_number = auto()
+
+    # profile #################################################################
+    profile = auto()
+    simple_profile = auto()
 
     # user_agent ##############################################################
     android_platform_token = auto()

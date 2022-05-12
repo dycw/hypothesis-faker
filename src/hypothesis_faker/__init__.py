@@ -24,6 +24,7 @@ from hypothesis_faker.strategies import company_emails
 from hypothesis_faker.strategies import company_suffixes
 from hypothesis_faker.strategies import coordinates
 from hypothesis_faker.strategies import countries
+from hypothesis_faker.strategies import country_calling_codes
 from hypothesis_faker.strategies import country_codes
 from hypothesis_faker.strategies import credit_card_expires
 from hypothesis_faker.strategies import credit_card_numbers
@@ -94,7 +95,10 @@ from hypothesis_faker.strategies import ipv4_privates
 from hypothesis_faker.strategies import ipv4_publics
 from hypothesis_faker.strategies import ipv4s
 from hypothesis_faker.strategies import ipv6s
+from hypothesis_faker.strategies import isbn10s
+from hypothesis_faker.strategies import isbn13s
 from hypothesis_faker.strategies import iso8601s
+from hypothesis_faker.strategies import jobs
 from hypothesis_faker.strategies import jsons
 from hypothesis_faker.strategies import language_names
 from hypothesis_faker.strategies import last_name_females
@@ -114,6 +118,7 @@ from hypothesis_faker.strategies import md5s
 from hypothesis_faker.strategies import mime_types
 from hypothesis_faker.strategies import month_names
 from hypothesis_faker.strategies import months
+from hypothesis_faker.strategies import msisdns
 from hypothesis_faker.strategies import name_females
 from hypothesis_faker.strategies import name_males
 from hypothesis_faker.strategies import name_nonbinaries
@@ -122,9 +127,12 @@ from hypothesis_faker.strategies import nic_handle_lists
 from hypothesis_faker.strategies import nic_handles
 from hypothesis_faker.strategies import null_booleans
 from hypothesis_faker.strategies import operas
+from hypothesis_faker.strategies import paragraph_lists
+from hypothesis_faker.strategies import paragraphs
 from hypothesis_faker.strategies import passwords
 from hypothesis_faker.strategies import past_dates
 from hypothesis_faker.strategies import past_datetime
+from hypothesis_faker.strategies import phone_numbers
 from hypothesis_faker.strategies import port_numbers
 from hypothesis_faker.strategies import postcodes
 from hypothesis_faker.strategies import prefix_females
@@ -132,6 +140,7 @@ from hypothesis_faker.strategies import prefix_males
 from hypothesis_faker.strategies import prefix_nonbinaries
 from hypothesis_faker.strategies import prefixes
 from hypothesis_faker.strategies import pricetags
+from hypothesis_faker.strategies import profiles
 from hypothesis_faker.strategies import psvs
 from hypothesis_faker.strategies import pytimezones
 from hypothesis_faker.strategies import rgb_colors
@@ -141,8 +150,11 @@ from hypothesis_faker.strategies import safaris
 from hypothesis_faker.strategies import safe_color_names
 from hypothesis_faker.strategies import safe_domain_names
 from hypothesis_faker.strategies import safe_emails
+from hypothesis_faker.strategies import sentence_lists
+from hypothesis_faker.strategies import sentences
 from hypothesis_faker.strategies import sha1s
 from hypothesis_faker.strategies import sha256s
+from hypothesis_faker.strategies import simple_profiles
 from hypothesis_faker.strategies import slugs
 from hypothesis_faker.strategies import street_addresses
 from hypothesis_faker.strategies import street_names
@@ -155,6 +167,8 @@ from hypothesis_faker.strategies import swift8s
 from hypothesis_faker.strategies import swift11s
 from hypothesis_faker.strategies import swifts
 from hypothesis_faker.strategies import tars
+from hypothesis_faker.strategies import text_lists
+from hypothesis_faker.strategies import texts
 from hypothesis_faker.strategies import time_deltas
 from hypothesis_faker.strategies import time_objects
 from hypothesis_faker.strategies import time_series
@@ -174,6 +188,8 @@ from hypothesis_faker.strategies import user_agents
 from hypothesis_faker.strategies import user_names
 from hypothesis_faker.strategies import uuid4s
 from hypothesis_faker.strategies import windows_platform_tokens
+from hypothesis_faker.strategies import word_lists
+from hypothesis_faker.strategies import words
 from hypothesis_faker.strategies import years
 from hypothesis_faker.strategies import zips
 
@@ -319,6 +335,20 @@ __all__ = [
     "uri_paths",
     "urls",
     "user_names",
+    # isbn ####################################################################
+    "isbn10s",
+    "isbn13s",
+    # job #####################################################################
+    "jobs",
+    # lorem ###################################################################
+    "paragraphs",
+    "paragraph_lists",
+    "sentences",
+    "sentence_lists",
+    "texts",
+    "text_lists",
+    "words",
+    "word_lists",
     # misc ####################################################################
     "binaries",
     "booleans",
@@ -359,6 +389,13 @@ __all__ = [
     "suffix_females",
     "suffix_males",
     "suffix_nonbinaries",
+    # phone_number ############################################################
+    "country_calling_codes",
+    "msisdns",
+    "phone_numbers",
+    # profile #################################################################
+    "profiles",
+    "simple_profiles",
     # user_agent ##############################################################
     "android_platform_tokens",
     "chromes",

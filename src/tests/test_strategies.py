@@ -37,6 +37,7 @@ from hypothesis_faker import company_emails
 from hypothesis_faker import company_suffixes
 from hypothesis_faker import coordinates
 from hypothesis_faker import countries
+from hypothesis_faker import country_calling_codes
 from hypothesis_faker import country_codes
 from hypothesis_faker import credit_card_expires
 from hypothesis_faker import credit_card_numbers
@@ -107,7 +108,10 @@ from hypothesis_faker import ipv4_privates
 from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
+from hypothesis_faker import isbn10s
+from hypothesis_faker import isbn13s
 from hypothesis_faker import iso8601s
+from hypothesis_faker import jobs
 from hypothesis_faker import jsons
 from hypothesis_faker import language_names
 from hypothesis_faker import last_name_females
@@ -127,6 +131,7 @@ from hypothesis_faker import md5s
 from hypothesis_faker import mime_types
 from hypothesis_faker import month_names
 from hypothesis_faker import months
+from hypothesis_faker import msisdns
 from hypothesis_faker import name_females
 from hypothesis_faker import name_males
 from hypothesis_faker import name_nonbinaries
@@ -135,9 +140,12 @@ from hypothesis_faker import nic_handle_lists
 from hypothesis_faker import nic_handles
 from hypothesis_faker import null_booleans
 from hypothesis_faker import operas
+from hypothesis_faker import paragraph_lists
+from hypothesis_faker import paragraphs
 from hypothesis_faker import passwords
 from hypothesis_faker import past_dates
 from hypothesis_faker import past_datetime
+from hypothesis_faker import phone_numbers
 from hypothesis_faker import port_numbers
 from hypothesis_faker import postcodes
 from hypothesis_faker import prefix_females
@@ -145,6 +153,7 @@ from hypothesis_faker import prefix_males
 from hypothesis_faker import prefix_nonbinaries
 from hypothesis_faker import prefixes
 from hypothesis_faker import pricetags
+from hypothesis_faker import profiles
 from hypothesis_faker import psvs
 from hypothesis_faker import pytimezones
 from hypothesis_faker import rgb_colors
@@ -154,8 +163,11 @@ from hypothesis_faker import safaris
 from hypothesis_faker import safe_color_names
 from hypothesis_faker import safe_domain_names
 from hypothesis_faker import safe_emails
+from hypothesis_faker import sentence_lists
+from hypothesis_faker import sentences
 from hypothesis_faker import sha1s
 from hypothesis_faker import sha256s
+from hypothesis_faker import simple_profiles
 from hypothesis_faker import slugs
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
@@ -168,6 +180,8 @@ from hypothesis_faker import swift8s
 from hypothesis_faker import swift11s
 from hypothesis_faker import swifts
 from hypothesis_faker import tars
+from hypothesis_faker import text_lists
+from hypothesis_faker import texts
 from hypothesis_faker import time_deltas
 from hypothesis_faker import time_objects
 from hypothesis_faker import time_series
@@ -187,6 +201,8 @@ from hypothesis_faker import user_agents
 from hypothesis_faker import user_names
 from hypothesis_faker import uuid4s
 from hypothesis_faker import windows_platform_tokens
+from hypothesis_faker import word_lists
+from hypothesis_faker import words
 from hypothesis_faker import years
 from hypothesis_faker import zips
 from tests.utilities import env
@@ -337,6 +353,20 @@ from tests.utilities import env
         param(uri_paths, str),
         param(urls, str),
         param(user_names, str),
+        # isbn ################################################################
+        param(isbn10s, str),
+        param(isbn13s, str),
+        # job #################################################################
+        param(jobs, str),
+        # lorem ###############################################################
+        param(paragraphs, str),
+        param(paragraph_lists, list, marks=mark.xfail(reason="hashing")),
+        param(sentences, str),
+        param(sentence_lists, list, marks=mark.xfail(reason="hashing")),
+        param(texts, str),
+        param(text_lists, list, marks=mark.xfail(reason="hashing")),
+        param(words, str),
+        param(word_lists, list, marks=mark.xfail(reason="hashing")),
         # misc ################################################################
         param(binaries, bytes),
         param(booleans, bool),
@@ -377,6 +407,13 @@ from tests.utilities import env
         param(suffix_females, str),
         param(suffix_males, str),
         param(suffix_nonbinaries, str),
+        # phone_number ########################################################
+        param(country_calling_codes, str),
+        param(msisdns, str),
+        param(phone_numbers, str),
+        # profile #############################################################
+        param(profiles, dict, marks=mark.xfail(reason="hashing")),
+        param(simple_profiles, dict, marks=mark.xfail(reason="hashing")),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),
