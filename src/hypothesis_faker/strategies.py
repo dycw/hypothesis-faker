@@ -3,15 +3,18 @@ from decimal import Decimal
 from typing import Any
 from typing import Callable
 from typing import Dict
+from typing import Iterable
 from typing import Iterator
 from typing import List
 from typing import Optional
 from typing import Sequence
+from typing import Set
 from typing import Tuple
 from typing import Union
 from uuid import UUID
 
 from faker.providers.credit_card import CardType
+from faker.providers.python import TypesSpec
 from faker.typing import GenderType
 from faker.typing import HueType
 from hypothesis.strategies import SearchStrategy
@@ -1242,6 +1245,163 @@ def simple_profiles(
     *, sex: Optional[GenderType] = None
 ) -> SearchStrategy[Dict[str, Union[str, dt.date, GenderType]]]:
     return Provider.simple_profile.get_strategy(sex=sex)
+
+
+# python ######################################################################
+
+
+def pybools() -> SearchStrategy[bool]:
+    return Provider.pybool.get_strategy()
+
+
+def pydecimals(
+    *,
+    left_digits: Optional[int] = None,
+    right_digits: Optional[int] = None,
+    positive: bool = False,
+    min_value: Optional[Decimal] = None,
+    max_value: Optional[Decimal] = None,
+) -> SearchStrategy[Decimal]:
+    return Provider.pydecimal.get_strategy(
+        left_digits=left_digits,
+        right_digits=right_digits,
+        positive=positive,
+        min_value=min_value,
+        max_value=max_value,
+    )
+
+
+def pydicts(
+    nb_elements: int = 10,
+    variable_nb_elements: bool = True,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[Dict[Any, Any]]:
+    return Provider.pydict.get_strategy(
+        nb_elements=nb_elements,
+        variable_nb_elements=variable_nb_elements,
+        value_types=value_types,
+        allowed_types=allowed_types,
+    )
+
+
+def pyfloats(
+    *,
+    left_digits: Optional[int] = None,
+    right_digits: Optional[int] = None,
+    positive: bool = False,
+    min_value: Optional[float] = None,
+    max_value: Optional[float] = None,
+) -> SearchStrategy[float]:
+    return Provider.pyfloat.get_strategy(
+        left_digits=left_digits,
+        right_digits=right_digits,
+        positive=positive,
+        min_value=min_value,
+        max_value=max_value,
+    )
+
+
+def pyints(
+    *, min_value: int = 0, max_value: int = 9999, step: int = 1
+) -> SearchStrategy[int]:
+    return Provider.pyint.get_strategy(
+        min_value=min_value, max_value=max_value, step=step
+    )
+
+
+def pyiterables(
+    *,
+    nb_elements: int = 10,
+    variable_nb_elements: bool = True,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[Iterable[Any]]:
+    return Provider.pyiterable.get_strategy(
+        nb_elements=nb_elements,
+        variable_nb_elements=variable_nb_elements,
+        value_types=value_types,
+        allowed_types=allowed_types,
+    )
+
+
+def pylists(
+    *,
+    nb_elements: int = 10,
+    variable_nb_elements: bool = True,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[List[Any]]:
+    return Provider.pylist.get_strategy(
+        nb_elements=nb_elements,
+        variable_nb_elements=variable_nb_elements,
+        value_types=value_types,
+        allowed_types=allowed_types,
+    )
+
+
+def pysets(
+    *,
+    nb_elements: int = 10,
+    variable_nb_elements: bool = True,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[Set[Any]]:
+    return Provider.pyset.get_strategy(
+        nb_elements=nb_elements,
+        variable_nb_elements=variable_nb_elements,
+        value_types=value_types,
+        allowed_types=allowed_types,
+    )
+
+
+def pystrs(
+    *, min_chars: Optional[int] = None, max_chars: int = 20
+) -> SearchStrategy[str]:
+    return Provider.pystr.get_strategy(min_chars=min_chars, max_chars=max_chars)
+
+
+def pystr_formats(
+    *,
+    string_format: str = "?#-###{{random_int}}{{random_letter}}",
+    letters: str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+) -> SearchStrategy[str]:
+    return Provider.pystr_format.get_strategy(
+        string_format=string_format, letters=letters
+    )
+
+
+def pystructs(
+    *,
+    count: int = 10,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[Tuple[List[Any], Dict[Any, Any], Dict[Any, Any]]]:
+    return Provider.pystruct.get_strategy(
+        count=count, value_types=value_types, allowed_types=allowed_types
+    )
+
+
+def pytuples(
+    *,
+    nb_elements: int = 10,
+    variable_nb_elements: bool = True,
+    value_types: Optional[TypesSpec] = None,
+    allowed_types: Optional[TypesSpec] = None,
+) -> SearchStrategy[Tuple[Any, ...]]:
+    return Provider.pytuple.get_strategy(
+        nb_elements=nb_elements,
+        variable_nb_elements=variable_nb_elements,
+        value_types=value_types,
+        allowed_types=allowed_types,
+    )
+
+
+# ssn #########################################################################
+
+
+def ssns() -> SearchStrategy[str]:
+    return Provider.ssn.get_strategy()
 
 
 # user_agent ##################################################################
