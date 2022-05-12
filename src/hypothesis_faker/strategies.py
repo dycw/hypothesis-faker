@@ -835,6 +835,17 @@ def user_names() -> SearchStrategy[str]:
     return Provider.user_name.get_strategy()
 
 
+# isbn ########################################################################
+
+
+def isbn10s(*, separator: str = "-") -> SearchStrategy[str]:
+    return Provider.isbn10.get_strategy(separator=separator)
+
+
+def isbn13s(*, separator: str = "-") -> SearchStrategy[str]:
+    return Provider.isbn13.get_strategy(separator=separator)
+
+
 # misc ########################################################################
 
 

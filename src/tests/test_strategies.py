@@ -107,6 +107,8 @@ from hypothesis_faker import ipv4_privates
 from hypothesis_faker import ipv4_publics
 from hypothesis_faker import ipv4s
 from hypothesis_faker import ipv6s
+from hypothesis_faker import isbn10s
+from hypothesis_faker import isbn13s
 from hypothesis_faker import iso8601s
 from hypothesis_faker import jsons
 from hypothesis_faker import language_names
@@ -337,6 +339,9 @@ from tests.utilities import env
         param(uri_paths, str),
         param(urls, str),
         param(user_names, str),
+        # isbn ################################################################
+        param(isbn10s, str),
+        param(isbn13s, str),
         # misc ################################################################
         param(binaries, bytes),
         param(booleans, bool),

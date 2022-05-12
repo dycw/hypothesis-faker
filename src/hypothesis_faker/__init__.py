@@ -94,6 +94,8 @@ from hypothesis_faker.strategies import ipv4_privates
 from hypothesis_faker.strategies import ipv4_publics
 from hypothesis_faker.strategies import ipv4s
 from hypothesis_faker.strategies import ipv6s
+from hypothesis_faker.strategies import isbn10s
+from hypothesis_faker.strategies import isbn13s
 from hypothesis_faker.strategies import iso8601s
 from hypothesis_faker.strategies import jsons
 from hypothesis_faker.strategies import language_names
@@ -319,6 +321,9 @@ __all__ = [
     "uri_paths",
     "urls",
     "user_names",
+    # isbn ####################################################################
+    "isbn10s",
+    "isbn13s",
     # misc ####################################################################
     "binaries",
     "booleans",

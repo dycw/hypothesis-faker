@@ -195,6 +195,10 @@ class Provider(Enum):
     url = auto()
     user_name = auto()
 
+    # isbn ####################################################################
+    isbn10 = auto()
+    isbn13 = auto()
+
     # misc ####################################################################
     binary = auto()
     boolean = auto()
