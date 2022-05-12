@@ -263,6 +263,23 @@ class Provider(Enum):
     profile = auto()
     simple_profile = auto()
 
+    # python ##################################################################
+    pybool = auto()
+    pydecimal = auto()
+    pydict = auto()
+    pyfloat = auto()
+    pyint = auto()
+    pyiterable = auto()
+    pylist = auto()
+    pyset = auto()
+    pystr = auto()
+    pystr_format = auto()
+    pystruct = auto()
+    pytuple = auto()
+
+    # ssn #####################################################################
+    ssn = auto()
+
     # user_agent ##############################################################
     android_platform_token = auto()
     chrome = auto()

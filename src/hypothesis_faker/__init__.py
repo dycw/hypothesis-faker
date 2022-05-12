@@ -142,7 +142,19 @@ from hypothesis_faker.strategies import prefixes
 from hypothesis_faker.strategies import pricetags
 from hypothesis_faker.strategies import profiles
 from hypothesis_faker.strategies import psvs
+from hypothesis_faker.strategies import pybools
+from hypothesis_faker.strategies import pydecimals
+from hypothesis_faker.strategies import pydicts
+from hypothesis_faker.strategies import pyfloats
+from hypothesis_faker.strategies import pyints
+from hypothesis_faker.strategies import pyiterables
+from hypothesis_faker.strategies import pylists
+from hypothesis_faker.strategies import pysets
+from hypothesis_faker.strategies import pystr_formats
+from hypothesis_faker.strategies import pystrs
+from hypothesis_faker.strategies import pystructs
 from hypothesis_faker.strategies import pytimezones
+from hypothesis_faker.strategies import pytuples
 from hypothesis_faker.strategies import rgb_colors
 from hypothesis_faker.strategies import rgb_css_colors
 from hypothesis_faker.strategies import ripe_ids
@@ -156,6 +168,7 @@ from hypothesis_faker.strategies import sha1s
 from hypothesis_faker.strategies import sha256s
 from hypothesis_faker.strategies import simple_profiles
 from hypothesis_faker.strategies import slugs
+from hypothesis_faker.strategies import ssns
 from hypothesis_faker.strategies import street_addresses
 from hypothesis_faker.strategies import street_names
 from hypothesis_faker.strategies import street_suffixes
@@ -396,6 +409,21 @@ __all__ = [
     # profile #################################################################
     "profiles",
     "simple_profiles",
+    # python ##################################################################
+    "pybools",
+    "pydecimals",
+    "pydicts",
+    "pyfloats",
+    "pyints",
+    "pyiterables",
+    "pylists",
+    "pysets",
+    "pystrs",
+    "pystr_formats",
+    "pystructs",
+    "pytuples",
+    # ssn #####################################################################
+    "ssns",
     # user_agent ##############################################################
     "android_platform_tokens",
     "chromes",
@@ -411,4 +439,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.10"
+__version__ = "0.1.12"

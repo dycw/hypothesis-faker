@@ -155,7 +155,19 @@ from hypothesis_faker import prefixes
 from hypothesis_faker import pricetags
 from hypothesis_faker import profiles
 from hypothesis_faker import psvs
+from hypothesis_faker import pybools
+from hypothesis_faker import pydecimals
+from hypothesis_faker import pydicts
+from hypothesis_faker import pyfloats
+from hypothesis_faker import pyints
+from hypothesis_faker import pyiterables
+from hypothesis_faker import pylists
+from hypothesis_faker import pysets
+from hypothesis_faker import pystr_formats
+from hypothesis_faker import pystrs
+from hypothesis_faker import pystructs
 from hypothesis_faker import pytimezones
+from hypothesis_faker import pytuples
 from hypothesis_faker import rgb_colors
 from hypothesis_faker import rgb_css_colors
 from hypothesis_faker import ripe_ids
@@ -169,6 +181,7 @@ from hypothesis_faker import sha1s
 from hypothesis_faker import sha256s
 from hypothesis_faker import simple_profiles
 from hypothesis_faker import slugs
+from hypothesis_faker import ssns
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
 from hypothesis_faker import street_suffixes
@@ -414,6 +427,21 @@ from tests.utilities import env
         # profile #############################################################
         param(profiles, dict, marks=mark.xfail(reason="hashing")),
         param(simple_profiles, dict, marks=mark.xfail(reason="hashing")),
+        # python ##############################################################
+        param(pybools, bool),
+        param(pydecimals, Decimal),
+        param(pydicts, dict, marks=mark.xfail(reason="hashing")),
+        param(pyfloats, float),
+        param(pyints, int),
+        param(pyiterables, object, marks=mark.xfail(reason="hashing")),
+        param(pylists, list, marks=mark.xfail(reason="hashing")),
+        param(pysets, set, marks=mark.xfail(reason="hashing")),
+        param(pystrs, str),
+        param(pystr_formats, str),
+        param(pystructs, tuple, marks=mark.xfail(reason="hashing")),
+        param(pytuples, tuple),
+        # ssn #####################################################################
+        param(ssns, str),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),
