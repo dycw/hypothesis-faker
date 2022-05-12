@@ -153,6 +153,7 @@ from hypothesis_faker import prefix_males
 from hypothesis_faker import prefix_nonbinaries
 from hypothesis_faker import prefixes
 from hypothesis_faker import pricetags
+from hypothesis_faker import profiles
 from hypothesis_faker import psvs
 from hypothesis_faker import pytimezones
 from hypothesis_faker import rgb_colors
@@ -166,6 +167,7 @@ from hypothesis_faker import sentence_lists
 from hypothesis_faker import sentences
 from hypothesis_faker import sha1s
 from hypothesis_faker import sha256s
+from hypothesis_faker import simple_profiles
 from hypothesis_faker import slugs
 from hypothesis_faker import street_addresses
 from hypothesis_faker import street_names
@@ -409,6 +411,9 @@ from tests.utilities import env
         param(country_calling_codes, str),
         param(msisdns, str),
         param(phone_numbers, str),
+        # profile #############################################################
+        param(profiles, dict, marks=mark.xfail(reason="hashing")),
+        param(simple_profiles, dict, marks=mark.xfail(reason="hashing")),
         # user_agent ##########################################################
         param(android_platform_tokens, str),
         param(chromes, str),

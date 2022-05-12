@@ -259,6 +259,10 @@ class Provider(Enum):
     msisdn = auto()
     phone_number = auto()
 
+    # profile #################################################################
+    profile = auto()
+    simple_profile = auto()
+
     # user_agent ##############################################################
     android_platform_token = auto()
     chrome = auto()

@@ -140,6 +140,7 @@ from hypothesis_faker.strategies import prefix_males
 from hypothesis_faker.strategies import prefix_nonbinaries
 from hypothesis_faker.strategies import prefixes
 from hypothesis_faker.strategies import pricetags
+from hypothesis_faker.strategies import profiles
 from hypothesis_faker.strategies import psvs
 from hypothesis_faker.strategies import pytimezones
 from hypothesis_faker.strategies import rgb_colors
@@ -153,6 +154,7 @@ from hypothesis_faker.strategies import sentence_lists
 from hypothesis_faker.strategies import sentences
 from hypothesis_faker.strategies import sha1s
 from hypothesis_faker.strategies import sha256s
+from hypothesis_faker.strategies import simple_profiles
 from hypothesis_faker.strategies import slugs
 from hypothesis_faker.strategies import street_addresses
 from hypothesis_faker.strategies import street_names
@@ -391,6 +393,9 @@ __all__ = [
     "country_calling_codes",
     "msisdns",
     "phone_numbers",
+    # profile #################################################################
+    "profiles",
+    "simple_profiles",
     # user_agent ##############################################################
     "android_platform_tokens",
     "chromes",

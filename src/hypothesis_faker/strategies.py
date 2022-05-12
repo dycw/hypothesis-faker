@@ -2,6 +2,7 @@ import datetime as dt
 from decimal import Decimal
 from typing import Any
 from typing import Callable
+from typing import Dict
 from typing import Iterator
 from typing import List
 from typing import Optional
@@ -11,6 +12,7 @@ from typing import Union
 from uuid import UUID
 
 from faker.providers.credit_card import CardType
+from faker.typing import GenderType
 from faker.typing import HueType
 from hypothesis.strategies import SearchStrategy
 
@@ -1223,6 +1225,23 @@ def msisdns() -> SearchStrategy[str]:
 
 def phone_numbers() -> SearchStrategy[str]:
     return Provider.phone_number.get_strategy()
+
+
+# profile #####################################################################
+
+
+def profiles(
+    *, fields: Optional[List[str]] = None, sex: Optional[GenderType] = None
+) -> SearchStrategy[
+    Dict[str, Union[str, Tuple[Decimal, Decimal], List[str], dt.date]]
+]:
+    return Provider.profile.get_strategy(fields=fields, sex=sex)
+
+
+def simple_profiles(
+    *, sex: Optional[GenderType] = None
+) -> SearchStrategy[Dict[str, Union[str, dt.date, GenderType]]]:
+    return Provider.simple_profile.get_strategy(sex=sex)
 
 
 # user_agent ##################################################################
