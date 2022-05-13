@@ -439,4 +439,4 @@ __all__ = [
     "user_agents",
     "windows_platform_tokens",
 ]
-__version__ = "0.1.12"
+__version__ = "0.1.13"
