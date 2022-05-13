@@ -28,10 +28,6 @@ repos:
           - flake8-print
           - flake8-simplify
           - flake8-unused-arguments
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.6.2
-    hooks:
-      - id: prettier
   - repo: https://github.com/myint/autoflake
     rev: v1.4
     hooks:
@@ -43,6 +39,10 @@ repos:
             --remove-duplicate-keys,
             --remove-unused-variables,
           ]
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.6.2
+    hooks:
+      - id: prettier
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
@@ -54,9 +54,13 @@ repos:
     rev: 22.3.0
     hooks:
       - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
   # linters
   - repo: https://github.com/compwa/mirrors-pyright
-    rev: "v1.1.244"
+    rev: "v1.1.246"
     hooks:
       - id: pyright
   - repo: https://github.com/markdownlint/markdownlint
